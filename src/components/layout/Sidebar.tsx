@@ -10,7 +10,6 @@ import {
   User,
   Code2,
   FolderGit2,
-  Timeline,
   Brain,
   Mail,
   Menu,
@@ -22,7 +21,6 @@ const navLinks = [
   { href: "#about", label: "Sobre mí", icon: User },
   { href: "#technologies", label: "Metodologías", icon: Code2 },
   { href: "#projects", label: "Proyectos", icon: FolderGit2 },
-  { href: "#experience", label: "Experiencia", icon: Timeline },
   { href: "#philosophy", label: "Filosofía", icon: Brain },
   { href: "#contact", label: "Contacto", icon: Mail },
 ]
