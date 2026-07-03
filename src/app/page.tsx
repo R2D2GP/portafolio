@@ -1,0 +1,21 @@
+import { Hero } from "@/components/sections/Hero"
+import { About } from "@/components/sections/About"
+import { Technologies } from "@/components/sections/Technologies"
+import { Projects } from "@/components/sections/Projects"
+import { Experience } from "@/components/sections/Experience"
+import { Philosophy } from "@/components/sections/Philosophy"
+import { Contact } from "@/components/sections/Contact"
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+      <About />
+      <Technologies />
+      <Projects />
+      <Experience />
+      <Philosophy />
+      <Contact />
+    </>
+  )
+}

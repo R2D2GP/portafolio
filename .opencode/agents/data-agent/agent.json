@@ -1,0 +1,6 @@
+{
+  "name": "data-agent",
+  "description": "Construye los tipos y archivos de datos del portafolio: tecnologías, proyectos y experiencia",
+  "skills": ["data-agent"],
+  "triggers": ["data", "technologies", "projects", "experience", "types", "interfaces"]
+}

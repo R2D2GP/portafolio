@@ -1,0 +1,6 @@
+{
+  "name": "sections-agent",
+  "description": "Construye los componentes compartidos y las 7 secciones del portafolio: AnimatedSection, SectionHeading, Hero, About, Technologies, Projects, Experience, Philosophy, Contact",
+  "skills": ["sections-agent"],
+  "triggers": ["sections", "hero", "about", "technologies", "projects", "experience", "philosophy", "contact", "animated section", "section heading"]
+}

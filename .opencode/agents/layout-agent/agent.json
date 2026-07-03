@@ -1,0 +1,6 @@
+{
+  "name": "layout-agent",
+  "description": "Construye el sistema de layout del portafolio: WheelSnapLayout, Sidebar, SectionDots, ThemeToggle y globals.css",
+  "skills": ["layout-agent"],
+  "triggers": ["layout", "sidebar", "wheel snap", "theme toggle", "globals.css", "section dots"]
+}

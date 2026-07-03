@@ -1,0 +1,6 @@
+{
+  "name": "ui-agent",
+  "description": "Construye los componentes primitivos de UI: Button, Badge, Input, Textarea y la utilidad cn()",
+  "skills": ["ui-agent"],
+  "triggers": ["button", "badge", "input", "textarea", "utils", "cn", "ui components"]
+}

@@ -1,0 +1,28 @@
+{
+  "agents": [
+    {
+      "name": "layout-agent",
+      "path": "./agents/layout-agent/agent.json",
+      "instructions": "./agents/layout-agent/SKILL.md",
+      "author": true
+    },
+    {
+      "name": "ui-agent",
+      "path": "./agents/ui-agent/agent.json",
+      "instructions": "./agents/ui-agent/SKILL.md",
+      "author": true
+    },
+    {
+      "name": "data-agent",
+      "path": "./agents/data-agent/agent.json",
+      "instructions": "./agents/data-agent/SKILL.md",
+      "author": true
+    },
+    {
+      "name": "sections-agent",
+      "path": "./agents/sections-agent/agent.json",
+      "instructions": "./agents/sections-agent/SKILL.md",
+      "author": true
+    }
+  ]
+}
