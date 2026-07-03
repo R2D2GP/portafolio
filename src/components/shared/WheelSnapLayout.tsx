@@ -15,11 +15,15 @@ import { SectionDots } from "./SectionDots"
 interface WheelSnapContextType {
   currentIndex: number
   scrollToSection: (index: number) => void
+  isLocked: boolean
+  setLocked: (locked: boolean) => void
 }
 
 const WheelSnapContext = createContext<WheelSnapContextType>({
   currentIndex: 0,
   scrollToSection: () => {},
+  isLocked: false,
+  setLocked: () => {},
 })
 
 export function useWheelSnap() {
@@ -35,14 +39,20 @@ export function WheelSnapLayout({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [translateY, setTranslateY] = useState(0)
+  const [isLocked, setIsLocked] = useState(false)
   const isScrolling = useRef(false)
   const currentIndexRef = useRef(0)
   const touchStartY = useRef(0)
   const sectionsRef = useRef<HTMLDivElement>(null)
+  const isLockedRef = useRef(false)
 
   useEffect(() => {
     currentIndexRef.current = currentIndex
   }, [currentIndex])
+
+  useEffect(() => {
+    isLockedRef.current = isLocked
+  }, [isLocked])
 
   const scrollToSection = useCallback((index: number) => {
     if (isScrolling.current) return
@@ -78,7 +88,7 @@ export function WheelSnapLayout({
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault()
-      if (isScrolling.current) return
+      if (isScrolling.current || isLockedRef.current) return
 
       const direction = e.deltaY > 0 ? 1 : -1
       const nextIndex = currentIndexRef.current + direction
@@ -94,7 +104,7 @@ export function WheelSnapLayout({
 
     const onTouchEnd = (e: TouchEvent) => {
       const deltaY = touchStartY.current - e.changedTouches[0].clientY
-      if (isScrolling.current) return
+      if (isScrolling.current || isLockedRef.current) return
       if (Math.abs(deltaY) < 30) return
 
       const direction = deltaY > 0 ? 1 : -1
@@ -106,6 +116,7 @@ export function WheelSnapLayout({
     }
 
     const onKeyDown = (e: KeyboardEvent) => {
+      if (isLockedRef.current) return
       if (e.key === "PageDown" || e.key === "ArrowDown") {
         e.preventDefault()
         const nextIndex = Math.min(
@@ -135,7 +146,7 @@ export function WheelSnapLayout({
   }, [scrollToSection])
 
   return (
-    <WheelSnapContext.Provider value={{ currentIndex, scrollToSection }}>
+    <WheelSnapContext.Provider value={{ currentIndex, scrollToSection, isLocked, setLocked: setIsLocked }}>
       <div className="h-dvh w-screen overflow-hidden">
         {sidebar}
         <SectionDots />

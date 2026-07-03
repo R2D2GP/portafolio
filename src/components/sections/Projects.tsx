@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, ExternalLink } from "lucide-react"
 import { projects, type Project } from "@/data/projects"
@@ -8,6 +9,7 @@ import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
 import { AnimatedSection } from "@/components/shared/AnimatedSection"
 import { SectionHeading } from "@/components/shared/SectionHeading"
+import { useWheelSnap } from "@/components/shared/WheelSnapLayout"
 
 const projectMeta: Record<string, { emoji: string; gradient: string }> = {
   "ai-code-assistant": { emoji: "🤖", gradient: "from-blue-500/10 to-blue-600/5" },
@@ -99,6 +101,12 @@ function ProjectModal({
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const { setLocked } = useWheelSnap()
+
+  const closeModal = () => {
+    setSelectedProject(null)
+    setLocked(false)
+  }
 
   return (
     <section
@@ -124,7 +132,7 @@ export function Projects() {
               <AnimatedSection key={project.id} direction="up" delay={0.1 * index}>
                 <motion.div
                   layoutId={`project-card-${project.id}`}
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => { setSelectedProject(project); setLocked(true) }}
                   className="group relative rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-6 cursor-pointer hover:shadow-lg hover:border-blue-500/30 dark:hover:border-blue-500/30 transition-all duration-300 overflow-hidden"
                 >
                   <div
@@ -161,14 +169,18 @@ export function Projects() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {selectedProject && (
+              <ProjectModal
+                project={selectedProject}
+                onClose={closeModal}
+              />
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   )
 }
