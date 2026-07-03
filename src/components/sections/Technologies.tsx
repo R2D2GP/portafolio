@@ -1,11 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { technologies } from "@/data/technologies"
+import { Check } from "lucide-react"
+import { methodologies } from "@/data/technologies"
 import { AnimatedSection } from "@/components/shared/AnimatedSection"
 import { SectionHeading } from "@/components/shared/SectionHeading"
 
-export function Technologies() {
+export function Methodologies() {
   return (
     <section
       id="technologies"
@@ -14,35 +15,51 @@ export function Technologies() {
       <div className="max-w-6xl mx-auto w-full">
         <AnimatedSection direction="up">
           <SectionHeading
-            title="Tecnologías"
-            subtitle="Herramientas con las que trabajo día a día"
+            title="Metodologías"
+            subtitle="Los principios que guían mi forma de construir software"
             align="center"
           />
         </AnimatedSection>
 
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
-          {technologies.map((tech, index) => (
-            <AnimatedSection key={tech.name} direction="up" delay={0.05 * index}>
+        <div className="mt-16 grid md:grid-cols-2 gap-8">
+          {methodologies.map((method, index) => (
+            <AnimatedSection key={method.name} direction="up" delay={0.15 * index}>
               <motion.div
-                whileHover={{ scale: 1.05, y: -4 }}
-                className="group relative rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-5 text-center cursor-default hover:shadow-lg transition-shadow duration-300"
+                whileHover={{ y: -6 }}
+                className="group relative h-full rounded-2xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-8 hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
                 <div
-                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                   style={{
-                    background: `radial-gradient(circle at center, ${tech.color}15, transparent)`,
+                    background: `radial-gradient(circle at top right, ${method.color}15, transparent)`,
                   }}
                 />
-                <div className="relative z-10 flex flex-col items-center gap-3">
-                  <span className="text-3xl">{tech.icon}</span>
-                  <div>
-                    <p className="font-medium text-zinc-900 dark:text-zinc-100 text-sm">
-                      {tech.name}
-                    </p>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-                      {tech.category}
-                    </p>
+                <div className="relative z-10">
+                  <div
+                    className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5"
+                    style={{ backgroundColor: `${method.color}20` }}
+                  >
+                    <span className="text-3xl">{method.icon}</span>
                   </div>
+                  <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3">
+                    {method.name}
+                  </h3>
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-6">
+                    {method.description}
+                  </p>
+                  <ul className="space-y-2.5">
+                    {method.principles.map((principle) => (
+                      <li key={principle} className="flex items-start gap-2.5">
+                        <Check
+                          className="w-5 h-5 mt-0.5 shrink-0"
+                          style={{ color: method.color }}
+                        />
+                        <span className="text-sm text-zinc-700 dark:text-zinc-300">
+                          {principle}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             </AnimatedSection>

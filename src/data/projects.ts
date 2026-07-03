@@ -6,7 +6,9 @@ export interface Project {
   image: string
   technologies: string[]
   githubUrl: string
-  demoUrl: string
+  presentacionUrl: string
+  introduccionUrl: string
+  manualUrl: string
   featured: boolean
 }
 
@@ -20,7 +22,9 @@ export const projects: Project[] = [
     image: "/projects/ai-code-assistant.jpg",
     technologies: ["Next.js", "TypeScript", "OpenAI API", "LangChain", "Tailwind CSS", "Supabase"],
     githubUrl: "https://github.com",
-    demoUrl: "https://demo.example.com",
+    presentacionUrl: "https://example.com/ai-code-assistant/presentacion",
+    introduccionUrl: "https://example.com/ai-code-assistant/introduccion",
+    manualUrl: "https://example.com/ai-code-assistant/manual",
     featured: true,
   },
   {
@@ -32,43 +36,9 @@ export const projects: Project[] = [
     image: "/projects/saas-automation.jpg",
     technologies: ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "OpenAI API"],
     githubUrl: "https://github.com",
-    demoUrl: "https://demo.example.com",
+    presentacionUrl: "https://example.com/saas-automation/presentacion",
+    introduccionUrl: "https://example.com/saas-automation/introduccion",
+    manualUrl: "https://example.com/saas-automation/manual",
     featured: true,
-  },
-  {
-    id: "ai-chat-platform",
-    title: "Plataforma de Chat con IA",
-    description: "Chat interactivo con respuestas contextuales usando streaming y modelos de lenguaje.",
-    longDescription:
-      "Aplicación de chat en tiempo real que utiliza Vercel AI SDK para streaming de respuestas y LangChain para encadenar prompts complejos. Historial de conversaciones persistido en Supabase con búsqueda semántica.",
-    image: "/projects/ai-chat-platform.jpg",
-    technologies: ["Next.js", "TypeScript", "Vercel AI SDK", "Supabase", "LangChain", "Tailwind CSS"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://demo.example.com",
-    featured: true,
-  },
-  {
-    id: "data-analytics",
-    title: "Panel de Análisis de Datos",
-    description: "Dashboard interactivo para visualizar y analizar grandes volúmenes de datos empresariales.",
-    longDescription:
-      "Backend en FastAPI con PostgreSQL que procesa consultas analíticas agregadas. Frontend en React con TypeScript y gráficos dinámicos para exploración visual de tendencias y métricas clave.",
-    image: "/projects/data-analytics.jpg",
-    technologies: ["Python", "React", "TypeScript", "FastAPI", "PostgreSQL", "Tailwind CSS"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://demo.example.com",
-    featured: false,
-  },
-  {
-    id: "ai-content-generator",
-    title: "Generador de Contenido con IA",
-    description: "Herramienta que crea contenido escrito automatizado usando modelos de lenguaje.",
-    longDescription:
-      "Generador de artículos, descripciones y copywriting impulsado por OpenAI API y LangChain. Los usuarios configuran tono, audiencia y formato; el contenido se guarda y versiona en Supabase.",
-    image: "/projects/ai-content-generator.jpg",
-    technologies: ["Next.js", "TypeScript", "OpenAI API", "LangChain", "Supabase", "Tailwind CSS"],
-    githubUrl: "https://github.com",
-    demoUrl: "https://demo.example.com",
-    featured: false,
   },
 ]

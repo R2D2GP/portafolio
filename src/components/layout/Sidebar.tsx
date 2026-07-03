@@ -20,7 +20,7 @@ import {
 const navLinks = [
   { href: "#hero", label: "Inicio", icon: Sparkles },
   { href: "#about", label: "Sobre mí", icon: User },
-  { href: "#technologies", label: "Tecnologías", icon: Code2 },
+  { href: "#technologies", label: "Metodologías", icon: Code2 },
   { href: "#projects", label: "Proyectos", icon: FolderGit2 },
   { href: "#experience", label: "Experiencia", icon: Timeline },
   { href: "#philosophy", label: "Filosofía", icon: Brain },

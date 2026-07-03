@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ExternalLink } from "lucide-react"
+import { X } from "lucide-react"
 import { projects, type Project } from "@/data/projects"
 import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
@@ -14,9 +14,6 @@ import { useWheelSnap } from "@/components/shared/WheelSnapLayout"
 const projectMeta: Record<string, { emoji: string; gradient: string }> = {
   "ai-code-assistant": { emoji: "🤖", gradient: "from-blue-500/10 to-blue-600/5" },
   "saas-automation": { emoji: "⚙️", gradient: "from-green-500/10 to-emerald-600/5" },
-  "ai-chat-platform": { emoji: "💬", gradient: "from-violet-500/10 to-purple-600/5" },
-  "data-analytics": { emoji: "📊", gradient: "from-orange-500/10 to-amber-600/5" },
-  "ai-content-generator": { emoji: "✍️", gradient: "from-teal-500/10 to-cyan-600/5" },
 }
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -76,7 +73,7 @@ function ProjectModal({
           ))}
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-2">
           <Button
             variant="secondary"
             size="sm"
@@ -88,10 +85,23 @@ function ProjectModal({
           <Button
             variant="primary"
             size="sm"
-            onClick={() => window.open(project.demoUrl, "_blank")}
+            onClick={() => window.open(project.presentacionUrl, "_blank")}
           >
-            <ExternalLink className="w-4 h-4" />
-            Demo
+            Presentación
+          </Button>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => window.open(project.introduccionUrl, "_blank")}
+          >
+            Introducción
+          </Button>
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={() => window.open(project.manualUrl, "_blank")}
+          >
+            Manual
           </Button>
         </div>
       </motion.div>
