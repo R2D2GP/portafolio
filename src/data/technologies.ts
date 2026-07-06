@@ -10,7 +10,7 @@ export const methodologies: Methodology[] = [
   {
     name: "Harness Engineering",
     icon: "🔧",
-    color: "#3B82F6",
+    color: "#68C3A9",
     description:
       "Construyo entornos de prueba robustos y automatizados que garantizan la calidad del software desde su origen. Cada componente se valida de forma aislada e integrada antes de llegar a producción.",
     principles: [
@@ -23,7 +23,7 @@ export const methodologies: Methodology[] = [
   {
     name: "Spec-Driven Development (SDD)",
     icon: "📋",
-    color: "#8B5CF6",
+    color: "#68C3A9",
     description:
       "Las especificaciones son la fuente de verdad del proyecto. Antes de escribir código, defino contratos, tipos y comportamientos esperados, asegurando que cada implementación cumpla exactamente lo acordado.",
     principles: [

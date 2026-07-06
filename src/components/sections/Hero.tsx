@@ -12,10 +12,10 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-radial from-blue-500/5 via-transparent to-transparent"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[128px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/20 rounded-full blur-[128px]" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-glow/20 rounded-full blur-[128px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-glow/20 rounded-full blur-[128px]" />
 
       <svg
         className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.05]"
@@ -43,7 +43,7 @@ export function Hero() {
 
         <AnimatedSection direction="up" delay={0.2}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-violet-500">
+            <span className="text-primary">
               AI-First Developer
             </span>
           </h1>
@@ -60,7 +60,7 @@ export function Hero() {
             <Button variant="primary" size="lg" onClick={() => scrollToSection(3)}>
               Ver proyectos
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => scrollToSection(6)}>
+            <Button variant="secondary" size="lg" onClick={() => scrollToSection(5)}>
               Contactarme
             </Button>
           </div>

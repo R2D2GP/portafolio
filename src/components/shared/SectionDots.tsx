@@ -7,9 +7,8 @@ import { motion } from "framer-motion"
 const sections = [
   { label: "Inicio" },
   { label: "Sobre mí" },
-  { label: "Tecnologías" },
+  { label: "Metodologías" },
   { label: "Proyectos" },
-  { label: "Experiencia" },
   { label: "Filosofía" },
   { label: "Contacto" },
 ]
@@ -38,14 +37,14 @@ export function SectionDots() {
                 className="absolute inset-0 flex items-center justify-center"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
               >
-                <span className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400" />
+                <span className="h-2 w-2 rounded-full bg-primary" />
               </motion.span>
             )}
             <span
               className={cn(
                 "rounded-full transition-all duration-300",
                 isActive
-                  ? "h-2.5 w-2.5 bg-blue-600 dark:bg-blue-400 ring-2 ring-blue-600/20 dark:ring-blue-400/20"
+                  ? "h-2.5 w-2.5 bg-primary ring-2 ring-primary/20"
                   : "h-1.5 w-1.5 bg-zinc-300 dark:bg-zinc-600 hover:bg-zinc-400 dark:hover:bg-zinc-500 group-hover:scale-125"
               )}
             />

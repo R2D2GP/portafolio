@@ -31,7 +31,7 @@ export function Philosophy() {
   return (
     <section
       id="philosophy"
-      className="min-h-screen flex flex-col justify-center px-4 py-20 bg-gradient-radial from-violet-500/5 via-transparent to-transparent"
+      className="min-h-screen flex flex-col justify-center px-4 py-20"
     >
       <div className="max-w-6xl mx-auto w-full">
         <AnimatedSection direction="up">
@@ -44,7 +44,7 @@ export function Philosophy() {
 
         <div className="mt-16 max-w-3xl mx-auto">
           <AnimatedSection direction="up" delay={0.2}>
-            <div className="rounded-xl border border-blue-500/20 bg-blue-500/5 backdrop-blur-sm p-6 mb-12">
+            <div className="rounded-xl border border-primary/20 bg-primary/5 backdrop-blur-sm p-6 mb-12">
               <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 italic">
                 &ldquo;La tecnología no es el fin, sino el medio. El verdadero valor está en cómo
                 la usamos para resolver problemas reales y mejorar vidas. Cada proyecto es
@@ -56,8 +56,8 @@ export function Philosophy() {
           <div className="grid sm:grid-cols-2 gap-6">
             {principles.map((principle, index) => (
               <AnimatedSection key={principle.title} direction="up" delay={0.1 * (index + 3)}>
-                <div className="group rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-6 hover:border-violet-500/30 dark:hover:border-violet-500/30 hover:shadow-lg hover:shadow-violet-500/5 transition-all duration-300">
-                  <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-violet-500/10 dark:bg-violet-500/5 text-violet-600 dark:text-violet-400 mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="group rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
                     <principle.icon className="w-5 h-5" />
                   </div>
                   <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">

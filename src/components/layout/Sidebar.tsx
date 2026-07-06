@@ -60,7 +60,7 @@ export function Sidebar() {
         <a
           href="#hero"
           onClick={(e) => handleClick(e, "#hero")}
-          className="mb-10 text-lg font-bold bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent px-3"
+          className="mb-10 text-lg font-bold text-primary px-3"
         >
           AI
         </a>
@@ -76,7 +76,7 @@ export function Sidebar() {
                 className={cn(
                   "group relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-300",
                   isActive
-                    ? "text-blue-600 dark:text-blue-400 font-medium"
+                    ? "text-primary font-medium"
                     : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
                 )}
                 title={link.label}
@@ -84,7 +84,7 @@ export function Sidebar() {
                 {isActive && (
                   <motion.div
                     layoutId="sidebar-indicator"
-                    className="absolute inset-0 bg-blue-500/10 rounded-xl border border-blue-500/20"
+                    className="absolute inset-0 bg-primary/10 rounded-xl border border-primary/20"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -136,7 +136,7 @@ function MobileDrawer({
             className="fixed left-0 top-0 bottom-0 z-50 w-72 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-2xl md:hidden"
           >
             <div className="flex items-center justify-between px-6 h-16 border-b border-zinc-200 dark:border-zinc-800">
-              <span className="text-lg font-bold bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
+              <span className="text-lg font-bold text-primary">
                 AI.Dev
               </span>
               <button
@@ -161,7 +161,7 @@ function MobileDrawer({
                     className={cn(
                       "flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all duration-200",
                       isActive
-                        ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 font-medium"
+                        ? "bg-primary/10 text-primary font-medium"
                         : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/50"
                     )}
                   >

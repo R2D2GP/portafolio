@@ -64,7 +64,7 @@ export function Contact() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-11 h-11 rounded-xl border border-zinc-300 dark:border-zinc-700/50 text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all duration-300"
+                  className="flex items-center justify-center w-11 h-11 rounded-xl border border-zinc-300 dark:border-zinc-700/50 text-zinc-600 dark:text-zinc-400 hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
                   aria-label={link.name}
                 >
                   {link.icon}
@@ -76,7 +76,7 @@ export function Contact() {
           <AnimatedSection delay={0.2}>
             <a
               href="mailto:hello@example.com"
-              className="inline-flex items-center gap-4 text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent hover:from-blue-500 hover:to-violet-500 transition-all duration-300"
+              className="inline-flex items-center gap-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-primary hover:text-[#5ab398] transition-all duration-300"
             >
               <Mail className="w-10 h-10 sm:w-12 sm:h-12 shrink-0" />
               <span>hello@example.com</span>

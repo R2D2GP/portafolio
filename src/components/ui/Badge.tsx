@@ -4,9 +4,9 @@ const variants = {
   default:
     "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300",
   primary:
-    "bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20",
+    "bg-primary/10 text-primary border border-primary/20",
   secondary:
-    "bg-violet-500/10 text-violet-700 dark:text-violet-400 border border-violet-500/20",
+    "bg-primary/10 text-primary border border-primary/20",
 }
 
 export function Badge({
