@@ -87,8 +87,8 @@ export function WheelSnapLayout({
     const getTotalSections = () => sectionsRef.current?.children.length ?? 1
 
     const onWheel = (e: WheelEvent) => {
-      e.preventDefault()
       if (isScrolling.current || isLockedRef.current) return
+      e.preventDefault()
 
       const direction = e.deltaY > 0 ? 1 : -1
       const nextIndex = currentIndexRef.current + direction
@@ -131,6 +131,7 @@ export function WheelSnapLayout({
         if (nextIndex !== currentIndexRef.current) scrollToSection(nextIndex)
       }
     }
+
 
     document.addEventListener("wheel", onWheel, { passive: false })
     document.addEventListener("touchstart", onTouchStart, { passive: true })

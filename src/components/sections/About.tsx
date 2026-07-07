@@ -46,15 +46,15 @@ export function About() {
           <AnimatedSection direction="right" delay={0.1}>
             <div className="prose prose-zinc dark:prose-invert max-w-none">
               <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
-                Soy un desarrollador <span className="text-primary font-semibold">autodidacta</span> apasionado por la tecnología
-                y el enfoque <span className="text-primary font-semibold">AI-First</span>.
-                Mi viaje comenzó con la curiosidad de entender cómo funcionan las cosas y
-                ha evolucionado hacia la creación de soluciones inteligentes que marcan la diferencia.
+                Soy un desarrollador por el enfoque <span className="text-primary font-semibold">AI-First</span>.
+                Mi viaje comenzó con la meta de mejorar la calidad y eficacia de mi trabajo
+                evolucionado hacia la creación de soluciones inteligentes que marcan la diferencia.
               </p>
               <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 mt-4">
-                Creo firmemente que la inteligencia artificial no es el futuro, sino el presente.
-                La integro en cada proyecto para ofrecer experiencias más inteligentes,
-                eficientes y personalizadas.
+                Creo firmemente que la inteligencia artificial es una herramienta clave para el futuro.
+                La integro en cada proyecto buscando agilizar el desarrollo de mis ideas para
+                experiencias más eficientes y personalizadas, sin sacrificar la calidad
+                ni la atención al detalle.
               </p>
             </div>
           </AnimatedSection>

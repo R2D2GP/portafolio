@@ -1,29 +1,29 @@
 "use client"
 
-import { Cpu, Zap, Target, Shield } from "lucide-react"
+import { Brain, Cpu, Users, Layout } from "lucide-react"
 import { AnimatedSection } from "@/components/shared/AnimatedSection"
 import { SectionHeading } from "@/components/shared/SectionHeading"
 
 const principles = [
   {
+    icon: Brain,
+    title: "AI-Native Development",
+    description: "La IA como punto de partida, no como añadido. Sistemas diseñados para integrar modelos de lenguaje y agentes desde su arquitectura base.",
+  },
+  {
     icon: Cpu,
-    title: "IA como núcleo",
-    description: "No como un añadido. La inteligencia artificial está en el centro de cada solución que construyo.",
+    title: "Agentic Systems",
+    description: "Sistemas autónomos que planifican, ejecutan y se adaptan. Agentes de IA que orquestan flujos complejos y colaboran para resolver problemas reales.",
   },
   {
-    icon: Zap,
-    title: "Velocidad sin sacrificio",
-    description: "Rápido no significa mal hecho. Optimización y calidad van de la mano.",
+    icon: Users,
+    title: "Human-Centered Automation",
+    description: "Automatización que potencia a las personas. Procesos inteligentes que eliminan lo repetitivo para enfocarse en crear, decidir y conectar.",
   },
   {
-    icon: Target,
-    title: "Precisión técnica",
-    description: "Cada línea de código tiene un propósito. La precisión elimina la deuda técnica.",
-  },
-  {
-    icon: Shield,
-    title: "Responsabilidad",
-    description: "Construir con ética, transparencia y responsabilidad hacia los usuarios.",
+    icon: Layout,
+    title: "Scalable Architecture",
+    description: "Bases sólidas y escalables. Microservicios y patrones de diseño que crecen con el negocio sin perder rendimiento.",
   },
 ]
 
@@ -45,10 +45,11 @@ export function Philosophy() {
         <div className="mt-16 max-w-3xl mx-auto">
           <AnimatedSection direction="up" delay={0.2}>
             <div className="rounded-xl border border-primary/20 bg-primary/5 backdrop-blur-sm p-6 mb-12">
-              <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 italic">
-                &ldquo;La tecnología no es el fin, sino el medio. El verdadero valor está en cómo
-                la usamos para resolver problemas reales y mejorar vidas. Cada proyecto es
-                una oportunidad para crear algo que importe.&rdquo;
+              <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+                Creo que el futuro del software pertenece a quienes diseñan sistemas
+                capaces de colaborar con la inteligencia artificial. Mi trabajo consiste en
+                convertir procesos complejos en experiencias simples, rápidas y eficientes
+                mediante automatización, agentes inteligentes y una arquitectura sólida.
               </p>
             </div>
           </AnimatedSection>

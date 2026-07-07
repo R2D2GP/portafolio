@@ -12,11 +12,6 @@ import { AnimatedSection } from "@/components/shared/AnimatedSection"
 import { SectionHeading } from "@/components/shared/SectionHeading"
 import { useWheelSnap } from "@/components/shared/WheelSnapLayout"
 
-const projectMeta: Record<string, { emoji: string }> = {
-  "ai-code-assistant": { emoji: "🤖" },
-  "saas-automation": { emoji: "⚙️" },
-}
-
 function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -32,7 +27,6 @@ function ProjectModal({
   project: Project
   onClose: () => void
 }) {
-  const meta = projectMeta[project.id] || { emoji: "📁" }
 
   return (
     <motion.div
@@ -68,7 +62,6 @@ function ProjectModal({
 
               <div className="space-y-6">
                 <div>
-                  <span className="text-4xl mb-2 block">{meta.emoji}</span>
                   <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-zinc-100">
                     {project.title}
                   </h2>
@@ -84,7 +77,6 @@ function ProjectModal({
                       key={feature.title}
                       className="p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800/40 border border-zinc-200/50 dark:border-zinc-700/30 hover:border-primary/30 hover:shadow-sm hover:shadow-primary/5 transition-all duration-300"
                     >
-                      <span className="text-xl block mb-1">{feature.icon}</span>
                       <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-0.5">
                         {feature.title}
                       </h4>
@@ -206,7 +198,6 @@ export function Projects() {
 
         <div className="mt-16 grid sm:grid-cols-2 gap-6">
           {projects.map((project, index) => {
-            const meta = projectMeta[project.id] || { emoji: "📁" }
             const visibleTechs = project.technologies.slice(0, 3)
             const remaining = project.technologies.length - 3
 
@@ -219,12 +210,6 @@ export function Projects() {
                 >
                   <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative z-10">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-3xl">{meta.emoji}</span>
-                      <span className="text-4xl opacity-[0.04] dark:opacity-[0.08] select-none">
-                        {meta.emoji}
-                      </span>
-                    </div>
                     <h3 className="font-semibold text-lg text-zinc-900 dark:text-zinc-100 mb-2">
                       {project.title}
                     </h3>

@@ -75,11 +75,11 @@ export function Contact() {
 
           <AnimatedSection delay={0.2}>
             <a
-              href="mailto:hello@example.com"
+              href="mailto:lapazajimenez@outlook.com"
               className="inline-flex items-center gap-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-primary hover:text-[#5ab398] transition-all duration-300"
             >
               <Mail className="w-10 h-10 sm:w-12 sm:h-12 shrink-0" />
-              <span>hello@example.com</span>
+              <span>lapazajimenez@outlook.com</span>
             </a>
           </AnimatedSection>
         </div>
