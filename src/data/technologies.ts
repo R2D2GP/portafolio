@@ -1,6 +1,5 @@
 export interface Methodology {
   name: string
-  icon: string
   color: string
   description: string
   principles: string[]
@@ -9,28 +8,46 @@ export interface Methodology {
 export const methodologies: Methodology[] = [
   {
     name: "Harness Engineering",
-    icon: "🔧",
-    color: "#68C3A9",
-    description:
-      "Construyo entornos de prueba robustos y automatizados que garantizan la calidad del software desde su origen. Cada componente se valida de forma aislada e integrada antes de llegar a producción.",
+    color: "var(--color-primary)",
+    description: "Construyo entornos de ejecución que permiten a los agentes operar de forma confiable, verificable y reproducible desde el primer día de desarrollo.",
     principles: [
-      "Pruebas automatizadas desde el primer commit",
-      "Infraestructura de integración continua confiable",
-      "Entornos de prueba reproducibles y efímeros",
-      "Validación temprana con test harnesses especializados",
+      "Entornos aislados y reproducibles",
+      "Validación automática en cada ejecución",
+      "Integración continua con pruebas confiables",
+      "Observabilidad completa del comportamiento del agente",
+    ],
+  },
+  {
+    name: "Loop Engineering",
+    color: "var(--color-primary)",
+    description: "Diseño ciclos autónomos donde los agentes planifican, ejecutan, evalúan y refinan su trabajo hasta cumplir el objetivo.",
+    principles: [
+      "Planificación iterativa basada en objetivos",
+      "Autoevaluación y corrección continua",
+      "Recuperación inteligente ante errores",
+      "Optimización mediante ciclos de retroalimentación",
+    ],
+  },
+  {
+    name: "Agent Orchestration",
+    color: "var(--color-primary)",
+    description: "Coordino agentes especializados que colaboran de forma estructurada para resolver problemas complejos como un único sistema inteligente.",
+    principles: [
+      "Delegación según capacidades del agente",
+      "Coordinación de flujos multiagente",
+      "Comunicación estructurada entre agentes",
+      "Supervisión y validación de resultados",
     ],
   },
   {
     name: "Spec-Driven Development (SDD)",
-    icon: "📋",
-    color: "#68C3A9",
-    description:
-      "Las especificaciones son la fuente de verdad del proyecto. Antes de escribir código, defino contratos, tipos y comportamientos esperados, asegurando que cada implementación cumpla exactamente lo acordado.",
+    color: "var(--color-primary)",
+    description: "Cada implementación nace de una especificación clara y verificable, asegurando que el software responda exactamente a los requisitos definidos.",
     principles: [
-      "Especificaciones antes que implementación",
-      "Tipos fuertes y contratos explícitos",
-      "Documentación viva generada desde las specs",
+      "Especificaciones como fuente de verdad",
+      "Contratos claros antes de implementar",
       "Validación continua contra la especificación",
+      "Documentación alineada con el desarrollo",
     ],
   },
 ]

@@ -1,9 +1,7 @@
 "use client"
 
-import { Sparkles } from "lucide-react"
 import { useWheelSnap } from "@/components/shared/WheelSnapLayout"
 import { Button } from "@/components/ui/Button"
-import { Badge } from "@/components/ui/Badge"
 import { AnimatedSection } from "@/components/shared/AnimatedSection"
 
 export function Hero() {
@@ -30,15 +28,8 @@ export function Hero() {
       </svg>
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-        <AnimatedSection direction="up">
-          <Badge variant="primary" className="inline-flex items-center gap-1.5 mb-8 px-4 py-1.5">
-            <Sparkles className="w-3.5 h-3.5" />
-            Autodidacta · AI-First · Innovación
-          </Badge>
-        </AnimatedSection>
-
         <AnimatedSection direction="up" delay={0.1}>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400 mb-4">Hola, soy</p>
+          <p className="text-2xl text-white mb-4">Hola, soy Arturo Apaza Jiménez un</p>
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={0.2}>
@@ -50,7 +41,7 @@ export function Hero() {
         </AnimatedSection>
 
         <AnimatedSection direction="up" delay={0.3}>
-          <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-10">
+          <p className="text-lg sm:text-xl text-white max-w-2xl mx-auto mb-10">
             Construyo aplicaciones modernas utilizando Inteligencia Artificial como núcleo del desarrollo.
           </p>
         </AnimatedSection>

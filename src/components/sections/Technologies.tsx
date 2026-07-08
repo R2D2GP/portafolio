@@ -15,8 +15,8 @@ export function Methodologies() {
       <div className="max-w-6xl mx-auto w-full">
         <AnimatedSection direction="up">
           <SectionHeading
-            title="Metodologías"
-            subtitle="Los principios que guían mi forma de construir software"
+            title="Engineering Principles"
+            subtitle="Principios de ingeniería que aplico para construir sistemas escalables, confiables y AI-First."
             align="center"
           />
         </AnimatedSection>
@@ -28,19 +28,9 @@ export function Methodologies() {
                 whileHover={{ y: -6 }}
                 className="group relative h-full rounded-2xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-8 hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{
-                    background: `radial-gradient(circle at top right, ${method.color}15, transparent)`,
-                  }}
-                />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-primary/[0.04]" />
                 <div className="relative z-10">
-                  <div
-                    className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5"
-                    style={{ backgroundColor: `${method.color}20` }}
-                  >
-                    <span className="text-3xl">{method.icon}</span>
-                  </div>
+
                   <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-3">
                     {method.name}
                   </h3>

@@ -42,7 +42,7 @@ export function Sidebar() {
     <>
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="fixed top-4 left-4 z-50 flex md:hidden h-10 w-10 items-center justify-center rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 shadow-sm transition-colors"
+        className="fixed top-4 left-4 z-50 flex md:hidden h-10 w-10 items-center justify-center rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
         aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
       >
         {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -56,11 +56,11 @@ export function Sidebar() {
         onNavigate={handleClick}
       />
 
-      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 z-40 w-56 flex-col border-r border-zinc-200/50 dark:border-zinc-800/50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl py-6 px-4">
+      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 z-40 w-56 flex-col border-r border-white/10 dark:border-white/5 bg-white/60 dark:bg-zinc-950/60 backdrop-blur-2xl py-6 px-4">
         <a
           href="#hero"
           onClick={(e) => handleClick(e, "#hero")}
-          className="mb-10 text-lg font-bold text-primary px-3"
+          className="mb-10 text-lg font-bold text-primary px-3 font-heading"
         >
           AI
         </a>
@@ -74,7 +74,7 @@ export function Sidebar() {
                 href={link.href}
                 onClick={(e) => handleClick(e, link.href)}
                 className={cn(
-                  "group relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-300",
+                  "group relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
                   isActive
                     ? "text-primary font-medium"
                     : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
@@ -136,12 +136,12 @@ function MobileDrawer({
             className="fixed left-0 top-0 bottom-0 z-50 w-72 border-r border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-2xl md:hidden"
           >
             <div className="flex items-center justify-between px-6 h-16 border-b border-zinc-200 dark:border-zinc-800">
-              <span className="text-lg font-bold text-primary">
+              <span className="text-lg font-bold text-primary font-heading">
                 AI.Dev
               </span>
               <button
                 onClick={onClose}
-                className="p-2 text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors"
+                className="p-2 text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-lg"
                 aria-label="Cerrar"
               >
                 <X className="h-5 w-5" />
@@ -159,7 +159,7 @@ function MobileDrawer({
                       onClose()
                     }}
                     className={cn(
-                      "flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all duration-200",
+                      "flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
                       isActive
                         ? "bg-primary/10 text-primary font-medium"
                         : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/50"

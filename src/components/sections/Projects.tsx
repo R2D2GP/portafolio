@@ -36,15 +36,15 @@ function ProjectModal({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
       <motion.div
         layoutId={`project-card-${project.id}`}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-900 shadow-2xl"
+        className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-zinc-200/80 dark:border-zinc-700/40 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-sm shadow-2xl"
       >
         <button
           onClick={onClose}
-          className="fixed top-6 right-6 z-50 p-2 rounded-xl bg-zinc-900/70 text-zinc-300 hover:text-white hover:bg-primary transition-colors"
+          className="fixed top-6 right-6 z-50 p-2 rounded-xl bg-zinc-900/70 text-zinc-300 hover:text-white hover:bg-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <X className="w-5 h-5" />
         </button>
@@ -206,7 +206,10 @@ export function Projects() {
                 <motion.div
                   layoutId={`project-card-${project.id}`}
                   onClick={() => { setSelectedProject(project); setLocked(true) }}
-                  className="group relative rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-6 cursor-pointer hover:shadow-lg hover:border-primary/30 transition-all duration-300 overflow-hidden"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedProject(project); setLocked(true) } }}
+                  className="group relative rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white/50 dark:bg-zinc-800/20 backdrop-blur-[2px] p-6 cursor-pointer hover:shadow-lg hover:border-primary/30 hover:bg-white/70 dark:hover:bg-zinc-800/40 transition-all duration-300 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                 >
                   <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative z-10">

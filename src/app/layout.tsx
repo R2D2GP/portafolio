@@ -1,17 +1,17 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Archivo, Space_Grotesk } from "next/font/google"
 import { Providers } from "./providers"
 import { Sidebar } from "@/components/layout/Sidebar"
 import { WheelSnapLayout } from "@/components/shared/WheelSnapLayout"
 import "./globals.css"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const archivo = Archivo({
+  variable: "--font-heading",
   subsets: ["latin"],
 })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-body",
   subsets: ["latin"],
 })
 
@@ -58,7 +58,7 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={`${archivo.variable} ${spaceGrotesk.variable}`}
     >
       <body className="bg-background text-foreground antialiased transition-colors duration-300">
         <Providers>
