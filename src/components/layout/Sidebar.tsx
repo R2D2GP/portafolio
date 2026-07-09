@@ -9,6 +9,7 @@ import {
   Sparkles,
   User,
   Code2,
+  SquareStack,
   FolderGit2,
   Brain,
   Mail,
@@ -19,7 +20,8 @@ import {
 const navLinks = [
   { href: "#hero", label: "Inicio", icon: Sparkles },
   { href: "#about", label: "Sobre mí", icon: User },
-  { href: "#technologies", label: "Metodologías", icon: Code2 },
+  { href: "#technologies", label: "Engineering Principles", icon: Code2 },
+  { href: "#ai-stack", label: "AI Stack", icon: SquareStack },
   { href: "#projects", label: "Proyectos", icon: FolderGit2 },
   { href: "#philosophy", label: "Filosofía", icon: Brain },
   { href: "#contact", label: "Contacto", icon: Mail },

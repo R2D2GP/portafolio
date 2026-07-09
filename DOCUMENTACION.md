@@ -22,6 +22,13 @@ Bitácora de cambios, decisiones y modificaciones del proyecto `portafolio-final
 | 2026-07-07 | 10 | About.tsx, Philosophy.tsx, Contact.tsx | Texto de About renovado. Filosofía reescrita con nuevo lema y tarjetas: AI-Native Development, Agentic Systems, Human-Centered Automation, Scalable Architecture. Email actualizado. | —
 | 2026-07-07 | 11 | technologies.ts, Technologies.tsx | Metodologías reemplazadas por 4 nuevas: Harness Engineering, Loop Engineering, Agent Orchestration, Spec-Driven Development (SDD). Sección renombrada a "Engineering Principles". | Sin emojis. Subtítulo actualizado a: "Principios de ingeniería que aplico para construir sistemas escalables, confiables y AI-First." |
 | 2026-07-08 | 12 | `.opencode/skills/ui-ux-pro-max/` (nuevo directorio) | Instalación del skill UI/UX Pro Max via `npx uipro-cli init --ai opencode`. Incluye SKILL.md, data/ (componentes, layouts, pages, patterns, formularios, etc.) y scripts/ (animaciones, colores, tipografía). | Fuente: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+| 2026-07-08 | 13 | Hero.tsx, layout.tsx, globals.css, Sidebar.tsx, SectionDots.tsx, Projects.tsx, Contact.tsx, Technologies.tsx, technologies.ts | **Fase A — Accesibilidad**: `focus-visible` rings en Sidebar, Contact, Projects, SectionDots. `role="button"` + `tabIndex` + keyboard handler en project cards. | WCAG AA — feedback visual para navegación por teclado.
+| 2026-07-08 | 13 | Sidebar.tsx, Projects.tsx | **Fase B — Glassmorphism**: Sidebar `backdrop-blur-xl` → `backdrop-blur-2xl` + `bg-white/60`. Modal overlay `backdrop-blur-sm` → `backdrop-blur-md`. Modal card `backdrop-blur-sm`. Project cards con `backdrop-blur-[2px]` y hover translúcido. | Efecto vidrio moderno sin usar degradados.
+| 2026-07-08 | 13 | layout.tsx, globals.css, Sidebar.tsx | **Fase C — Tipografía**: Geist reemplazado por Archivo (headings, `--font-heading`) + Space Grotesk (body, `--font-body`). Body usa `font-sans → var(--font-body)`. Headings `h1-h6` usan `var(--font-heading)`. Brand text en Sidebar con `font-heading`. | Archivo + Space Grotesk bajo SIL OFL 1.1 (libre uso). Pairing "Minimalist Portfolio" recomendado por UI/UX Pro Max.
+| 2026-07-08 | 13 | SectionDots.tsx, technologies.ts, Technologies.tsx | **Fase D — Refactor menor**: SectionDots label "Metodologías" → "Engineering Principles". Colores inline `#68C3A9` → `var(--color-primary)`. `radial-gradient` hover eliminado, reemplazado por overlay sólido `bg-primary/[0.04]`. | Cumple regla de solo colores sólidos sin degradados.
+| 2026-07-08 | 13 | technologies.ts | Descripción de Loop Engineering acortada: eliminado "con la mínima intervención humana". | —
+| 2026-07-08 | 13 | Hero.tsx | Badge "Autodidacta · AI-First · Innovación" eliminado. "Hola, soy" → "Hola, soy Arturo Apaza Jiménez un". Saludo a `text-2xl text-white`. Tagline a `text-white`. | Personalización Hero. Textos introductorios en blanco.
+| 2026-07-09 | 14 | AIStack.tsx (nuevo), Sidebar.tsx, SectionDots.tsx, page.tsx, Hero.tsx | Nueva sección "AI Stack" en posición 3. 5 categorías en grid responsivo: LLMs, Frameworks, Tools, Infra, Automation. Mismo glass pattern que project cards. Sidebar + SectionDots actualizados. Hero CTAs reindexados (3→4, 5→6). | Diseñada con recomendaciones UI/UX Pro Max (Bento Grid + Soft UI). Iconos Lucide: BrainCircuit, Layers, Wrench, Server, Zap.
 
 ---
 
@@ -83,7 +90,7 @@ portafolio-final/
 │   │   ├── providers.tsx              ← ThemeProvider (next-themes, dark default)
 │   │   └── globals.css                ← Variables CSS, dark mode, overflow hidden, reduced motion
 │   ├── data/
-│   │   ├── technologies.ts            ← Metodologías: Harness Engineering + SDD
+│   │   ├── technologies.ts            ← Engineering Principles: 4 metodologías
 │   │   └── projects.ts                ← FerreClick Arequipa y Notas Eximp Frereg (datos reales)
 │   ├── lib/
 │   │   └── utils.ts                   ← cn() (clsx + tailwind-merge)
@@ -125,3 +132,4 @@ portafolio-final/
 - **Path alias**: Usar `@/` para importar desde `src/`.
 - **Estilos**: Tailwind CSS v4, con variables CSS para tema claro/oscuro.
 - **Sin degradados**: No usar `bg-gradient-*`, `from-*`, `to-*`, `via-*`. Solo colores sólidos. Usar los tokens `primary`, `links`, `hover`, `glow` del theme.
+- **Tipografía**: Archivo para headings (`--font-heading`), Space Grotesk para body (`--font-body`). Definidas via `next/font/google` con variables CSS. `font-heading` como clase Tailwind para títulos fuera de `h1-h6`.

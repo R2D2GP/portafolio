@@ -8,6 +8,7 @@ const sections = [
   { label: "Inicio" },
   { label: "Sobre mí" },
   { label: "Engineering Principles" },
+  { label: "AI Stack" },
   { label: "Proyectos" },
   { label: "Filosofía" },
   { label: "Contacto" },

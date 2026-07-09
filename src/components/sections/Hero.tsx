@@ -48,10 +48,10 @@ export function Hero() {
 
         <AnimatedSection direction="up" delay={0.4}>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button variant="primary" size="lg" onClick={() => scrollToSection(3)}>
+            <Button variant="primary" size="lg" onClick={() => scrollToSection(4)}>
               Ver proyectos
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => scrollToSection(5)}>
+            <Button variant="secondary" size="lg" onClick={() => scrollToSection(6)}>
               Contactarme
             </Button>
           </div>
