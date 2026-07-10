@@ -44,21 +44,21 @@ export function Philosophy() {
 
         <div className="mt-16 max-w-3xl mx-auto">
           <AnimatedSection direction="up" delay={0.2}>
-            <div className="rounded-xl border border-primary/20 bg-primary/5 backdrop-blur-sm p-6 mb-12">
-              <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+            <div className="rounded-2xl border border-primary/20 bg-primary/5 backdrop-blur-sm p-6 mb-12">
+              <blockquote className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 border-l-4 border-l-primary pl-6">
                 Creo que el futuro del software pertenece a quienes diseñan sistemas
                 capaces de colaborar con la inteligencia artificial. Mi trabajo consiste en
                 convertir procesos complejos en experiencias simples, rápidas y eficientes
                 mediante automatización, agentes inteligentes y una arquitectura sólida.
-              </p>
+              </blockquote>
             </div>
           </AnimatedSection>
 
           <div className="grid sm:grid-cols-2 gap-6">
             {principles.map((principle, index) => (
               <AnimatedSection key={principle.title} direction="up" delay={0.1 * (index + 3)}>
-                <div className="group rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="group rounded-2xl border border-zinc-200 dark:border-zinc-700/50 bg-white dark:bg-zinc-800/30 p-6 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_12px_-4px] shadow-primary/20">
                     <principle.icon className="w-5 h-5" />
                   </div>
                   <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">

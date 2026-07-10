@@ -50,9 +50,9 @@ export function AIStack() {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {categories.map((category, index) => (
             <AnimatedSection key={category.name} direction="up" delay={0.1 * index}>
-              <div className="group rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white/50 dark:bg-zinc-800/20 backdrop-blur-[2px] p-5 hover:border-primary/30 hover:shadow-lg hover:bg-white/70 dark:hover:bg-zinc-800/40 transition-all duration-300 h-full">
+              <div className="group rounded-2xl border border-zinc-200 dark:border-zinc-700/50 bg-white/50 dark:bg-zinc-800/20 backdrop-blur-[2px] p-5 hover:border-primary/30 hover:shadow-lg hover:bg-white/70 dark:hover:bg-zinc-800/40 hover:-translate-y-0.5 transition-all duration-300 h-full">
                 <div className="flex items-center gap-2.5 mb-4">
-                  <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 text-primary">
+                  <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-primary/10 text-primary shadow-[0_0_12px_-4px] shadow-primary/20">
                     <category.icon className="w-5 h-5" />
                   </div>
                   <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 font-heading">
@@ -61,8 +61,8 @@ export function AIStack() {
                 </div>
                 <ul className="space-y-2">
                   {category.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <Check className="w-4 h-4 text-primary shrink-0" />
+                    <li key={item} className="flex items-center gap-2 group/item">
+                      <Check className="w-4 h-4 text-primary shrink-0 group-hover/item:text-glow transition-colors duration-300" />
                       <span className="text-sm text-zinc-600 dark:text-zinc-400">
                         {item}
                       </span>

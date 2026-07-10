@@ -14,6 +14,7 @@ export function Hero() {
     >
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-glow/20 rounded-full blur-[128px]" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-glow/20 rounded-full blur-[128px]" />
+      <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-primary/10 rounded-full blur-[96px]" />
 
       <svg
         className="absolute inset-0 w-full h-full opacity-[0.03] dark:opacity-[0.05]"
@@ -48,10 +49,10 @@ export function Hero() {
 
         <AnimatedSection direction="up" delay={0.4}>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button variant="primary" size="lg" onClick={() => scrollToSection(4)}>
+            <Button variant="primary" size="lg" onClick={() => scrollToSection(4)} className="active:scale-95">
               Ver proyectos
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => scrollToSection(6)}>
+            <Button variant="secondary" size="lg" onClick={() => scrollToSection(6)} className="active:scale-95">
               Contactarme
             </Button>
           </div>

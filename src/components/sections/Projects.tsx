@@ -56,7 +56,7 @@ function ProjectModal({
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-contain p-4"
+                  className="object-contain rounded-xl"
                 />
               </div>
 
@@ -209,7 +209,7 @@ export function Projects() {
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedProject(project); setLocked(true) } }}
-                  className="group relative rounded-xl border border-zinc-200 dark:border-zinc-700/50 bg-white/50 dark:bg-zinc-800/20 backdrop-blur-[2px] p-6 cursor-pointer hover:shadow-lg hover:border-primary/30 hover:bg-white/70 dark:hover:bg-zinc-800/40 transition-all duration-300 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                  className="group relative rounded-2xl border border-zinc-200 dark:border-zinc-700/50 bg-white/50 dark:bg-zinc-800/20 backdrop-blur-[2px] p-6 cursor-pointer hover:shadow-lg hover:border-primary/30 hover:bg-white/70 dark:hover:bg-zinc-800/40 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                 >
                   <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="relative z-10">

@@ -28,7 +28,7 @@ export function SectionDots() {
           <button
             key={section.label}
             onClick={() => scrollToSection(index)}
-            className="group relative flex items-center justify-center py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-full"
+            className="group relative flex items-center justify-center py-0.5 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-full"
             aria-label={section.label}
             aria-current={isActive ? "true" : undefined}
           >

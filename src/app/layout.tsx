@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Archivo, Space_Grotesk } from "next/font/google"
+import { Archivo, Space_Grotesk, JetBrains_Mono } from "next/font/google"
 import { Providers } from "./providers"
 import { Sidebar } from "@/components/layout/Sidebar"
 import { WheelSnapLayout } from "@/components/shared/WheelSnapLayout"
@@ -12,6 +12,11 @@ const archivo = Archivo({
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-body",
+  subsets: ["latin"],
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 })
 
@@ -58,7 +63,7 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${archivo.variable} ${spaceGrotesk.variable}`}
+      className={`${archivo.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-background text-foreground antialiased transition-colors duration-300">
         <Providers>

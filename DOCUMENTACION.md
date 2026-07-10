@@ -29,6 +29,7 @@ Bitácora de cambios, decisiones y modificaciones del proyecto `portafolio-final
 | 2026-07-08 | 13 | technologies.ts | Descripción de Loop Engineering acortada: eliminado "con la mínima intervención humana". | —
 | 2026-07-08 | 13 | Hero.tsx | Badge "Autodidacta · AI-First · Innovación" eliminado. "Hola, soy" → "Hola, soy Arturo Apaza Jiménez un". Saludo a `text-2xl text-white`. Tagline a `text-white`. | Personalización Hero. Textos introductorios en blanco.
 | 2026-07-09 | 14 | AIStack.tsx (nuevo), Sidebar.tsx, SectionDots.tsx, page.tsx, Hero.tsx | Nueva sección "AI Stack" en posición 3. 5 categorías en grid responsivo: LLMs, Frameworks, Tools, Infra, Automation. Mismo glass pattern que project cards. Sidebar + SectionDots actualizados. Hero CTAs reindexados (3→4, 5→6). | Diseñada con recomendaciones UI/UX Pro Max (Bento Grid + Soft UI). Iconos Lucide: BrainCircuit, Layers, Wrench, Server, Zap.
+| 2026-07-09 | 15 | technologies.ts, layout.tsx, globals.css, TerminalCard.tsx (nuevo), Technologies.tsx | **Engineering Principles rediseñado como terminal**: cada metodología se muestra en una ventana de terminal minimalista (fondo oscuro, JetBrains Mono, label "bash" en barra de título). Animación de tipeo carácter por carácter del comando `$`, luego líneas de salida una por una con fade-in, cursor parpadeante al final. Interfaz `TerminalLine` (type: command/output/success/highlight). Descripciones muy breves en español debajo de cada terminal. | Animación con `useReducer` (evita lint rule set-state-in-effect). Soporta `prefers-reduced-motion`. Solo se ejecuta una vez al entrar al viewport. JetBrains Mono via `next/font/google` como `--font-mono`. Hover con glow primary. |
 
 ---
 
@@ -108,10 +109,11 @@ portafolio-final/
 │   │   │   ├── Badge.tsx              ← 3 variantes (default, primary, secondary)
 │   │   │   ├── Input.tsx              ← forwardRef
 │   │   │   └── Textarea.tsx           ← forwardRef
+│   │   │   └── TerminalCard.tsx        ← Terminal animada con tipeo (useReducer, JetBrains Mono)
 │   │   └── sections/
 │   │       ├── Hero.tsx               ← Sección 0: intro + CTA
 │   │       ├── About.tsx              ← Sección 1: sobre mí
-│   │       ├── Technologies.tsx       ← Sección 2: Metodologías (exporta Methodologies)
+│   │       ├── Technologies.tsx       ← Sección 2: Engineering Principles (4 TerminalCards)
 │   │       ├── Projects.tsx           ← Sección 3: 2 proyectos con modal expandible (createPortal)
 │   │       ├── Philosophy.tsx         ← Sección 4: filosofía de trabajo
 │   │       └── Contact.tsx            ← Sección 5: email grande + redes, sin formulario
@@ -132,4 +134,4 @@ portafolio-final/
 - **Path alias**: Usar `@/` para importar desde `src/`.
 - **Estilos**: Tailwind CSS v4, con variables CSS para tema claro/oscuro.
 - **Sin degradados**: No usar `bg-gradient-*`, `from-*`, `to-*`, `via-*`. Solo colores sólidos. Usar los tokens `primary`, `links`, `hover`, `glow` del theme.
-- **Tipografía**: Archivo para headings (`--font-heading`), Space Grotesk para body (`--font-body`). Definidas via `next/font/google` con variables CSS. `font-heading` como clase Tailwind para títulos fuera de `h1-h6`.
+- **Tipografía**: Archivo para headings (`--font-heading`), Space Grotesk para body (`--font-body`), JetBrains Mono para terminal (`--font-mono`). Definidas via `next/font/google` con variables CSS. `font-heading` como clase Tailwind para títulos fuera de `h1-h6`. Solo la terminal de Engineering Principles usa `font-mono`.
