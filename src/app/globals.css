@@ -18,6 +18,7 @@
   --font-sans: var(--font-body);
   --font-mono: var(--font-mono);
   --font-heading: var(--font-heading);
+  --animate-blink: blink 1s step-end infinite;
 }
 
 :root {

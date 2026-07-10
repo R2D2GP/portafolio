@@ -54,6 +54,7 @@ function useReducedMotion() {
 
 export function TerminalCard({ methodology }: { methodology: Methodology }) {
   const ref = useRef<HTMLDivElement>(null)
+  const cursorRef = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-80px" })
   const reducedMotion = useReducedMotion()
   const [state, dispatch] = useReducer(reducer, { phase: "idle" })
@@ -103,6 +104,15 @@ export function TerminalCard({ methodology }: { methodology: Methodology }) {
     return () => clearTimeout(t)
   }, [state, totalLines])
 
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (cursorRef.current) {
+        cursorRef.current.style.opacity = cursorRef.current.style.opacity === "0" ? "1" : "0"
+      }
+    }, 500)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <div ref={ref} className="group">
       <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/90 backdrop-blur-sm shadow-lg hover:shadow-[0_0_24px_-8px] hover:shadow-primary/15 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
@@ -115,7 +125,7 @@ export function TerminalCard({ methodology }: { methodology: Methodology }) {
             <span className="text-zinc-200">
               {state.phase === "idle" ? "" : methodology.terminal.command.slice(0, state.phase === "typing" ? state.typed : commandLen)}
               {(state.phase === "typing" && state.typed < commandLen) && (
-                <span className="text-primary animate-[blink_1s_step-end_infinite]">▌</span>
+                <span ref={cursorRef} className="text-primary">▌</span>
               )}
             </span>
           </div>
@@ -139,7 +149,7 @@ export function TerminalCard({ methodology }: { methodology: Methodology }) {
             </div>
           )}
           {state.phase === "done" && (
-            <span className="text-primary animate-[blink_1s_step-end_infinite]">▌</span>
+            <span ref={cursorRef} className="text-primary">▌</span>
           )}
         </div>
       </div>
