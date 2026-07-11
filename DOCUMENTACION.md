@@ -33,6 +33,7 @@ Bitácora de cambios, decisiones y modificaciones del proyecto `portafolio-final
 | 2026-07-10 | 16 | Philosophy.tsx, aistack.ts (nuevo), DOCUMENTACION.md | **Filosofía rediseñada como red neuronal interactiva** (branch `filosofia`). 6 nodos (Engineering DNA + 5 principios), 15 conexiones bezier-curve, 50 dots de fondo deterministas. Click en nodo abre panel con descripción. | Posiciones calculadas desde porcentajes via `useContainerSize` + `useSyncExternalStore`. Pulse animation con `strokeDasharray` + `strokeDashoffset` infinito. Conexiones coloreadas por tipo (solid/process). |
 | 2026-07-10 | 16 | aistack.ts (nuevo), AIStack.tsx (reescrito), Sidebar.tsx, SectionDots.tsx, page.tsx, Hero.tsx | **AI Stack rediseñado como grafo arquitectónico**: 5 capas verticales (Applications, Agent Framework, Models, Infrastructure, Data), 14 nodos con íconos, conectados por línea central. | `aistack.ts` exporta 5 capas, 14 nodos, descripciones one-line. Layout vertical con `flex-col` y línea SVG conectora central. Sección movida a posición 3 (después de Engineering Principles). |
 | 2026-07-10 | 16 | Philosophy.tsx | **Ajuste visibilidad conexiones**: `strokeWidth 0.8→1.2`, `strokeOpacity 0.12→0.30` (normal); `1.8→2.5`, `0.55→0.75` (active); `0.03→0.08` (dimmed). Dash `"3 24"→"4 16"`. | Conexiones más visibles en estado base, pulso más notorio al hover. |
+| 2026-07-11 | 17 | Hero.tsx, About.tsx, AIStack.tsx, Technologies.tsx, Projects.tsx, Contact.tsx, AnimatedSection.tsx, Badge.tsx, TerminalCard.tsx, globals.css, Sidebar.tsx, GitHubIcon.tsx (nuevo), AGENTS.md, DOCUMENTACION.md | **Optimización post-Filosofía**: TerminalCard (setInterval→CSS animate-blink). AnimatedSection elimina 4 direcciones muertas. Badge secondary = primary fusionado. @keyframes float eliminado. GitHubIcon extraído a componente compartido. Sidebar: fallback safe. Hero: AnimatedSection simplificados. Doc: 7→6 secciones. | |
 
 ---
 
@@ -90,7 +91,7 @@ portafolio-final/
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx                   ← Layout raíz (Providers → WheelSnapLayout → Sidebar + sections)
-│   │   ├── page.tsx                   ← Renderiza 7 secciones en orden 0-6
+│   │   ├── page.tsx                   ← Renderiza 6 secciones en orden 0-5
 │   │   ├── providers.tsx              ← ThemeProvider (next-themes, dark default)
 │   │   └── globals.css                ← Variables CSS, dark mode, overflow hidden, reduced motion
 │   ├── data/
@@ -105,23 +106,23 @@ portafolio-final/
 │   │   ├── shared/
 │   │   │   ├── WheelSnapLayout.tsx    ← Context (currentIndex, scrollToSection, isLocked, setLocked) + snap logic + translateY
 │   │   │   ├── AnimatedSection.tsx    ← Scroll-reveal wrapper (framer-motion useInView)
-│   │   │   ├── SectionDots.tsx        ← Navegación por dots (7 indicadores)
+│   │   │   ├── SectionDots.tsx        ← Navegación por dots (6 indicadores)
 │   │   │   ├── SectionHeading.tsx     ← Título + subtítulo con alineación
 │   │   │   └── ThemeToggle.tsx        ← Dark/light toggle (next-themes, framer-motion)
 │   │   ├── ui/
 │   │   │   ├── Button.tsx             ← CVA + Slot
-│   │   │   ├── Badge.tsx              ← 3 variantes (default, primary, secondary)
+│   │   │   ├── Badge.tsx              ← 2 variantes (default, primary)
 │   │   │   ├── Input.tsx              ← forwardRef
 │   │   │   └── Textarea.tsx           ← forwardRef
-│   │   │   └── TerminalCard.tsx        ← Terminal animada con tipeo (useReducer, JetBrains Mono)
+│   │   │   ├── TerminalCard.tsx        ← Terminal animada con tipeo (useReducer, JetBrains Mono)
+│   │   │   └── GitHubIcon.tsx          ← SVG compartido GitHub
 │   │   └── sections/
 │   │       ├── Hero.tsx               ← Sección 0: intro + CTA
 │   │       ├── About.tsx              ← Sección 1: sobre mí
 │   │       ├── Technologies.tsx       ← Sección 2: Engineering Principles (4 TerminalCards)
 │   │       ├── AIStack.tsx            ← Sección 3: AI Stack (grafo 5 capas, 14 nodos)
 │   │       ├── Projects.tsx           ← Sección 4: 2 proyectos con modal expandible (createPortal)
-│   │       ├── Philosophy.tsx         ← Sección 5: filosofía como red neuronal interactiva (branch `filosofia`)
-│   │       └── Contact.tsx            ← Sección 6: email grande + redes, sin formulario
+│   │       └── Contact.tsx            ← Sección 5: email grande + redes, sin formulario
 │   ├── public/                        ← Assets estáticos
 ├── FLUJO_DE_TRABAJO.md
 ├── DOCUMENTACION.md

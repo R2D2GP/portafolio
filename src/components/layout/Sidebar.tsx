@@ -36,7 +36,7 @@ export function Sidebar() {
     setMobileOpen(false)
   }
 
-  const activeId = navLinks[currentIndex]?.href.slice(1) ?? "hero"
+  const activeId = (navLinks[currentIndex] ?? navLinks[0]).href.slice(1)
 
   return (
     <>

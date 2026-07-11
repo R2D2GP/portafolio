@@ -29,11 +29,11 @@ export function Hero() {
       </svg>
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-        <AnimatedSection direction="up" delay={0.1}>
+        <AnimatedSection delay={0.1}>
           <p className="text-2xl text-white mb-4">Hola, soy Arturo Apaza Jiménez un</p>
         </AnimatedSection>
 
-        <AnimatedSection direction="up" delay={0.2}>
+        <AnimatedSection delay={0.2}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
             <span className="text-primary">
               AI-First Developer
@@ -41,13 +41,13 @@ export function Hero() {
           </h1>
         </AnimatedSection>
 
-        <AnimatedSection direction="up" delay={0.3}>
+        <AnimatedSection delay={0.3}>
           <p className="text-lg sm:text-xl text-white max-w-2xl mx-auto mb-10">
             Construyo aplicaciones modernas utilizando Inteligencia Artificial como núcleo del desarrollo.
           </p>
         </AnimatedSection>
 
-        <AnimatedSection direction="up" delay={0.4}>
+        <AnimatedSection delay={0.4}>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button variant="primary" size="lg" onClick={() => scrollToSection(4)} className="active:scale-95">
               Ver proyectos

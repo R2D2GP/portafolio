@@ -5,8 +5,6 @@ const variants = {
     "bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300",
   primary:
     "bg-primary/10 text-primary border border-primary/20",
-  secondary:
-    "bg-primary/10 text-primary border border-primary/20",
 }
 
 export function Badge({
@@ -15,7 +13,7 @@ export function Badge({
   children,
 }: {
   className?: string
-  variant?: "default" | "primary" | "secondary"
+  variant?: keyof typeof variants
   children: React.ReactNode
 }) {
   return (

@@ -115,7 +115,7 @@ export function AIStack() {
       className="min-h-screen flex flex-col justify-center px-4 py-20"
     >
       <div className="max-w-4xl mx-auto w-full">
-        <AnimatedSection direction="up">
+        <AnimatedSection >
           <SectionHeading
             title="AI Stack"
             subtitle="Un ecosistema conectado de herramientas para construir sistemas de IA."
