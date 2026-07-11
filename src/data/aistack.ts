@@ -7,15 +7,21 @@ export interface StackNode {
 export interface StackLayer {
   id: string
   label: string
-  icon: string
+  description: string
   nodes: StackNode[]
+}
+
+export interface StackNode {
+  id: string
+  label: string
+  description: string
 }
 
 export const stackLayers: StackLayer[] = [
   {
     id: "models",
     label: "Models",
-    icon: "\uD83E\uDDE0",
+    description: "Modelos de lenguaje de última generación",
     nodes: [
       { id: "gpt5", label: "GPT-5", description: "Primary reasoning model" },
       { id: "claude", label: "Claude", description: "Extended context & analysis" },
@@ -25,7 +31,7 @@ export const stackLayers: StackLayer[] = [
   {
     id: "frameworks",
     label: "Agent Frameworks",
-    icon: "\u2699",
+    description: "Orquestación de agentes inteligentes",
     nodes: [
       { id: "langgraph", label: "LangGraph", description: "Agent orchestration framework" },
       { id: "openai-sdk", label: "OpenAI SDK", description: "GPT integration layer" },
@@ -35,7 +41,7 @@ export const stackLayers: StackLayer[] = [
   {
     id: "tools",
     label: "Development Tools",
-    icon: "\uD83D\uDEE0",
+    description: "Herramientas de desarrollo AI-native",
     nodes: [
       { id: "cursor", label: "Cursor", description: "AI-native code editor" },
       { id: "claude-code", label: "Claude Code", description: "Terminal AI assistant" },
@@ -46,7 +52,7 @@ export const stackLayers: StackLayer[] = [
   {
     id: "infra",
     label: "Infrastructure & Memory",
-    icon: "\uD83D\uDCC4",
+    description: "Infraestructura serverless y memoria vectorial",
     nodes: [
       { id: "supabase", label: "Supabase", description: "Backend as a service" },
       { id: "pinecone", label: "Pinecone", description: "Vector storage & search" },
@@ -56,7 +62,7 @@ export const stackLayers: StackLayer[] = [
   {
     id: "automation",
     label: "Automation",
-    icon: "\u26A1",
+    description: "Automatización de flujos de trabajo",
     nodes: [
       { id: "github-actions", label: "GitHub Actions", description: "CI/CD pipelines" },
       { id: "n8n", label: "n8n", description: "Workflow automation" },
