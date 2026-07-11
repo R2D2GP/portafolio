@@ -52,7 +52,7 @@ export function Hero() {
             <Button variant="primary" size="lg" onClick={() => scrollToSection(4)} className="active:scale-95">
               Ver proyectos
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => scrollToSection(6)} className="active:scale-95">
+            <Button variant="secondary" size="lg" onClick={() => scrollToSection(5)} className="active:scale-95">
               Contactarme
             </Button>
           </div>

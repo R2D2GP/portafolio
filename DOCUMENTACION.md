@@ -30,6 +30,9 @@ Bitácora de cambios, decisiones y modificaciones del proyecto `portafolio-final
 | 2026-07-08 | 13 | Hero.tsx | Badge "Autodidacta · AI-First · Innovación" eliminado. "Hola, soy" → "Hola, soy Arturo Apaza Jiménez un". Saludo a `text-2xl text-white`. Tagline a `text-white`. | Personalización Hero. Textos introductorios en blanco.
 | 2026-07-09 | 14 | AIStack.tsx (nuevo), Sidebar.tsx, SectionDots.tsx, page.tsx, Hero.tsx | Nueva sección "AI Stack" en posición 3. 5 categorías en grid responsivo: LLMs, Frameworks, Tools, Infra, Automation. Mismo glass pattern que project cards. Sidebar + SectionDots actualizados. Hero CTAs reindexados (3→4, 5→6). | Diseñada con recomendaciones UI/UX Pro Max (Bento Grid + Soft UI). Iconos Lucide: BrainCircuit, Layers, Wrench, Server, Zap.
 | 2026-07-09 | 15 | technologies.ts, layout.tsx, globals.css, TerminalCard.tsx (nuevo), Technologies.tsx | **Engineering Principles rediseñado como terminal**: cada metodología se muestra en una ventana de terminal minimalista (fondo oscuro, JetBrains Mono, label "bash" en barra de título). Animación de tipeo carácter por carácter del comando `$`, luego líneas de salida una por una con fade-in, cursor parpadeante al final. Interfaz `TerminalLine` (type: command/output/success/highlight). Descripciones muy breves en español debajo de cada terminal. | Animación con `useReducer` (evita lint rule set-state-in-effect). Soporta `prefers-reduced-motion`. Solo se ejecuta una vez al entrar al viewport. JetBrains Mono via `next/font/google` como `--font-mono`. Hover con glow primary. |
+| 2026-07-10 | 16 | Philosophy.tsx, aistack.ts (nuevo), DOCUMENTACION.md | **Filosofía rediseñada como red neuronal interactiva** (branch `filosofia`). 6 nodos (Engineering DNA + 5 principios), 15 conexiones bezier-curve, 50 dots de fondo deterministas. Click en nodo abre panel con descripción. | Posiciones calculadas desde porcentajes via `useContainerSize` + `useSyncExternalStore`. Pulse animation con `strokeDasharray` + `strokeDashoffset` infinito. Conexiones coloreadas por tipo (solid/process). |
+| 2026-07-10 | 16 | aistack.ts (nuevo), AIStack.tsx (reescrito), Sidebar.tsx, SectionDots.tsx, page.tsx, Hero.tsx | **AI Stack rediseñado como grafo arquitectónico**: 5 capas verticales (Applications, Agent Framework, Models, Infrastructure, Data), 14 nodos con íconos, conectados por línea central. | `aistack.ts` exporta 5 capas, 14 nodos, descripciones one-line. Layout vertical con `flex-col` y línea SVG conectora central. Sección movida a posición 3 (después de Engineering Principles). |
+| 2026-07-10 | 16 | Philosophy.tsx | **Ajuste visibilidad conexiones**: `strokeWidth 0.8→1.2`, `strokeOpacity 0.12→0.30` (normal); `1.8→2.5`, `0.55→0.75` (active); `0.03→0.08` (dimmed). Dash `"3 24"→"4 16"`. | Conexiones más visibles en estado base, pulso más notorio al hover. |
 
 ---
 
@@ -87,11 +90,12 @@ portafolio-final/
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx                   ← Layout raíz (Providers → WheelSnapLayout → Sidebar + sections)
-│   │   ├── page.tsx                   ← Renderiza 6 secciones en orden 0-5
+│   │   ├── page.tsx                   ← Renderiza 7 secciones en orden 0-6
 │   │   ├── providers.tsx              ← ThemeProvider (next-themes, dark default)
 │   │   └── globals.css                ← Variables CSS, dark mode, overflow hidden, reduced motion
 │   ├── data/
 │   │   ├── technologies.ts            ← Engineering Principles: 4 metodologías
+│   │   ├── aistack.ts                 ← AI Stack: 5 capas, 14 nodos tecnológicos
 │   │   └── projects.ts                ← FerreClick Arequipa y Notas Eximp Frereg (datos reales)
 │   ├── lib/
 │   │   └── utils.ts                   ← cn() (clsx + tailwind-merge)
@@ -101,7 +105,7 @@ portafolio-final/
 │   │   ├── shared/
 │   │   │   ├── WheelSnapLayout.tsx    ← Context (currentIndex, scrollToSection, isLocked, setLocked) + snap logic + translateY
 │   │   │   ├── AnimatedSection.tsx    ← Scroll-reveal wrapper (framer-motion useInView)
-│   │   │   ├── SectionDots.tsx        ← Navegación por dots (6 indicadores)
+│   │   │   ├── SectionDots.tsx        ← Navegación por dots (7 indicadores)
 │   │   │   ├── SectionHeading.tsx     ← Título + subtítulo con alineación
 │   │   │   └── ThemeToggle.tsx        ← Dark/light toggle (next-themes, framer-motion)
 │   │   ├── ui/
@@ -114,9 +118,10 @@ portafolio-final/
 │   │       ├── Hero.tsx               ← Sección 0: intro + CTA
 │   │       ├── About.tsx              ← Sección 1: sobre mí
 │   │       ├── Technologies.tsx       ← Sección 2: Engineering Principles (4 TerminalCards)
-│   │       ├── Projects.tsx           ← Sección 3: 2 proyectos con modal expandible (createPortal)
-│   │       ├── Philosophy.tsx         ← Sección 4: filosofía de trabajo
-│   │       └── Contact.tsx            ← Sección 5: email grande + redes, sin formulario
+│   │       ├── AIStack.tsx            ← Sección 3: AI Stack (grafo 5 capas, 14 nodos)
+│   │       ├── Projects.tsx           ← Sección 4: 2 proyectos con modal expandible (createPortal)
+│   │       ├── Philosophy.tsx         ← Sección 5: filosofía como red neuronal interactiva (branch `filosofia`)
+│   │       └── Contact.tsx            ← Sección 6: email grande + redes, sin formulario
 │   ├── public/                        ← Assets estáticos
 ├── FLUJO_DE_TRABAJO.md
 ├── DOCUMENTACION.md

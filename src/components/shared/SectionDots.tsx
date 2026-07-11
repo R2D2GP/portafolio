@@ -10,7 +10,6 @@ const sections = [
   { label: "Engineering Principles" },
   { label: "AI Stack" },
   { label: "Proyectos" },
-  { label: "Filosofía" },
   { label: "Contacto" },
 ]
 

@@ -11,7 +11,6 @@ import {
   Code2,
   SquareStack,
   FolderGit2,
-  Brain,
   Mail,
   Menu,
   X,
@@ -23,7 +22,6 @@ const navLinks = [
   { href: "#technologies", label: "Engineering Principles", icon: Code2 },
   { href: "#ai-stack", label: "AI Stack", icon: SquareStack },
   { href: "#projects", label: "Proyectos", icon: FolderGit2 },
-  { href: "#philosophy", label: "Filosofía", icon: Brain },
   { href: "#contact", label: "Contacto", icon: Mail },
 ]
 
