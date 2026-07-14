@@ -10,7 +10,6 @@ import {
   Zap,
 } from "lucide-react"
 import { stackLayers } from "@/data/aistack"
-import type { StackNode } from "@/data/aistack"
 import { cn } from "@/lib/utils"
 
 const layerIcons: Record<string, React.ComponentType<{ className?: string }>> = {
