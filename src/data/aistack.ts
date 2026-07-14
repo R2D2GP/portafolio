@@ -1,7 +1,6 @@
 export interface StackNode {
   id: string
   label: string
-  description: string
 }
 
 export interface StackLayer {
@@ -11,21 +10,16 @@ export interface StackLayer {
   nodes: StackNode[]
 }
 
-export interface StackNode {
-  id: string
-  label: string
-  description: string
-}
-
 export const stackLayers: StackLayer[] = [
   {
     id: "models",
     label: "Models",
-    description: "Modelos de lenguaje de última generación",
+    description: "Modelos de lenguaje en constante evolución",
     nodes: [
-      { id: "gpt5", label: "GPT-5", description: "Primary reasoning model" },
-      { id: "claude", label: "Claude", description: "Extended context & analysis" },
-      { id: "gemini", label: "Gemini", description: "Multimodal processing" },
+      { id: "gpt5", label: "GPT-5" },
+      { id: "claude", label: "Claude" },
+      { id: "gemini", label: "Gemini" },
+      { id: "minimax", label: "Minimax" },
     ],
   },
   {
@@ -33,9 +27,9 @@ export const stackLayers: StackLayer[] = [
     label: "Agent Frameworks",
     description: "Orquestación de agentes inteligentes",
     nodes: [
-      { id: "langgraph", label: "LangGraph", description: "Agent orchestration framework" },
-      { id: "openai-sdk", label: "OpenAI SDK", description: "GPT integration layer" },
-      { id: "vercel-ai-sdk", label: "Vercel AI SDK", description: "Edge AI deployment" },
+      { id: "langgraph", label: "LangGraph" },
+      { id: "openai-sdk", label: "OpenAI SDK" },
+      { id: "vercel-ai-sdk", label: "Vercel AI SDK" },
     ],
   },
   {
@@ -43,10 +37,10 @@ export const stackLayers: StackLayer[] = [
     label: "Development Tools",
     description: "Herramientas de desarrollo AI-native",
     nodes: [
-      { id: "cursor", label: "Cursor", description: "AI-native code editor" },
-      { id: "claude-code", label: "Claude Code", description: "Terminal AI assistant" },
-      { id: "playwright", label: "Playwright", description: "Browser automation" },
-      { id: "docker", label: "Docker", description: "Containerized environments" },
+      { id: "cursor", label: "Cursor" },
+      { id: "vscode", label: "Visual Studio Code" },
+      { id: "playwright", label: "Playwright" },
+      { id: "warp", label: "Warp" },
     ],
   },
   {
@@ -54,18 +48,20 @@ export const stackLayers: StackLayer[] = [
     label: "Infrastructure & Memory",
     description: "Infraestructura serverless y memoria vectorial",
     nodes: [
-      { id: "supabase", label: "Supabase", description: "Backend as a service" },
-      { id: "pinecone", label: "Pinecone", description: "Vector storage & search" },
-      { id: "cloudflare", label: "Cloudflare", description: "Edge network & workers" },
+      { id: "supabase", label: "Supabase" },
+      { id: "pinecone", label: "Pinecone" },
+      { id: "cloudflare", label: "Cloudflare" },
     ],
   },
   {
-    id: "automation",
-    label: "Automation",
-    description: "Automatización de flujos de trabajo",
+    id: "deploy",
+    label: "Deploy",
+    description: "Despliegue de los proyectos",
     nodes: [
-      { id: "github-actions", label: "GitHub Actions", description: "CI/CD pipelines" },
-      { id: "n8n", label: "n8n", description: "Workflow automation" },
+      { id: "github-actions", label: "GitHub Actions" },
+      { id: "docker", label: "Docker" },
+      { id: "vercel", label: "Vercel" },
+      { id: "railway", label: "Railway" },
     ],
   },
 ]

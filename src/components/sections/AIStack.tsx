@@ -7,7 +7,7 @@ import {
   Network,
   Wrench,
   Server,
-  Zap,
+  Rocket,
 } from "lucide-react"
 import { stackLayers } from "@/data/aistack"
 import { cn } from "@/lib/utils"
@@ -17,7 +17,7 @@ const layerIcons: Record<string, React.ComponentType<{ className?: string }>> = 
   frameworks: Network,
   tools: Wrench,
   infra: Server,
-  automation: Zap,
+  deploy: Rocket,
 }
 
 const particles = Array.from({ length: 10 }, (_, i) => ({
@@ -44,9 +44,9 @@ function TechLogo({ id, className }: { id: string; className?: string }) {
       path: "M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z",
       color: "#D97706",
     },
-    "claude-code": {
-      path: "M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z",
-      color: "#D97706",
+    vscode: {
+      path: "M17.5 0.027 7.562 8.393 2.555 4.373 0 6.005v12l2.555 1.632 5.007-4.02L17.5 23.973 24 20.587V3.413L17.5 0.027zM17.5 6.438v11.124L10.225 12 17.5 6.438z",
+      color: "#007ACC",
     },
     gemini: {
       path: "M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81",
@@ -91,6 +91,10 @@ function TechLogo({ id, className }: { id: string; className?: string }) {
     n8n: {
       path: "M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632",
       color: "#FF6C37",
+    },
+    vercel: {
+      path: "M12 1.608 24 22.392H0Z",
+      color: "#FFFFFF",
     },
   }
 
@@ -168,8 +172,8 @@ export function AIStack() {
             AI Stack
           </h2>
           <div className="w-24 h-0.5 bg-primary mt-4 mx-auto rounded-full" />
-          <p className="mt-4 text-zinc-400 text-lg">
-            Building production-ready AI systems
+          <p className="mt-4 text-zinc-300 text-lg">
+            Sistemas de IA listos para producción
           </p>
         </motion.div>
 
@@ -212,8 +216,8 @@ export function AIStack() {
                 </div>
                 <p
                   className={cn(
-                    "text-center text-[10px] sm:text-xs font-semibold uppercase tracking-wider mt-3 transition-colors duration-300 max-w-[90px] sm:max-w-[110px] font-heading",
-                    isActive ? "text-primary" : "text-zinc-500 group-hover:text-zinc-300"
+                      "text-center text-[10px] sm:text-xs font-semibold uppercase tracking-wider mt-3 transition-colors duration-300 max-w-[90px] sm:max-w-[110px] font-heading",
+                      isActive ? "text-primary" : "text-zinc-400 group-hover:text-zinc-200"
                   )}
                 >
                   {layer.label}
@@ -264,7 +268,7 @@ export function AIStack() {
                   <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 tracking-tight font-heading">
                     {activeLayer.label}
                   </h3>
-                  <p className="text-sm sm:text-base text-zinc-500 mt-1">
+                  <p className="text-sm sm:text-base text-zinc-400 mt-1">
                     {activeLayer.description}
                   </p>
                 </div>
@@ -280,12 +284,9 @@ export function AIStack() {
                     <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800/80 flex items-center justify-center p-2 shrink-0 group-hover:border-primary/20 transition-colors shadow-inner">
                       <TechLogo id={node.id} className="w-full h-full transition-transform duration-300 group-hover:scale-110" />
                     </div>
-                    <div className="flex flex-col min-w-0 pr-1">
+                    <div className="min-w-0 pr-1">
                       <span className="text-sm sm:text-base font-bold tracking-tight text-zinc-100 group-hover:text-primary transition-colors font-heading">
                         {node.label}
-                      </span>
-                      <span className="text-[11px] text-zinc-500 truncate max-w-[150px] sm:max-w-xs mt-0.5 group-hover:text-zinc-400 transition-colors">
-                        {node.description}
                       </span>
                     </div>
                   </div>

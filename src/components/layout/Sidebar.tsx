@@ -57,13 +57,9 @@ export function Sidebar() {
       />
 
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 z-40 w-56 flex-col border-r border-white/10 dark:border-white/5 bg-white/60 dark:bg-zinc-950/60 backdrop-blur-2xl py-6 px-4">
-        <a
-          href="#hero"
-          onClick={(e) => handleClick(e, "#hero")}
-          className="mb-10 text-lg font-bold text-primary px-3 font-heading"
-        >
-          AI
-        </a>
+        <span className="mb-10 text-lg font-bold text-primary px-3 font-heading">
+          Arturo Apaza
+        </span>
 
         <nav className="flex flex-1 flex-col gap-1">
           {navLinks.map((link) => {
@@ -137,7 +133,7 @@ function MobileDrawer({
           >
             <div className="flex items-center justify-between px-6 h-16 border-b border-zinc-200 dark:border-zinc-800">
               <span className="text-lg font-bold text-primary font-heading">
-                AI.Dev
+                Arturo Apaza
               </span>
               <button
                 onClick={onClose}
