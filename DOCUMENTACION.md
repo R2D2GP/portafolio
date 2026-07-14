@@ -38,6 +38,8 @@ Bitácora de cambios, decisiones y modificaciones del proyecto `portafolio-final
 | 2026-07-14 | 19 | AIStack.tsx, DOCUMENTACION.md | **AI Stack Interactivo con Logos Oficiales**: Se rediseñó la sección de AI Stack eliminando el badge flotante "Always learning" y la barra de métricas inferior. Se reemplazó el nodo central "AI Ecosystem" y la grilla de 5 tarjetas por una fila interactiva de 5 botones circulares (categorías) y una sola tarjeta de detalles abajo. Cada chip de tecnología renderiza el logo oficial vectorial de la marca con su respectivo color (OpenAI, Anthropic, Gemini, Vercel, Supabase, Pinecone, Docker, Cloudflare, etc.). | Siguiendo las instrucciones de la imagen `meta-stack.png`. Animación de cambio de categoría con AnimatePresence de Framer Motion. Verificación de build y lint (0 errores, 0 warnings). |
 | 2026-07-14 | 20 | AIStack.tsx, aistack.ts, DOCUMENTACION.md | **Ajustes post-diseño**: Claude Code reemplazado por VS Code. Descripciones traducidas al español y luego eliminadas. Contraste de textos mejorado (zinc-500→zinc-400/zinc-300). Minimax agregado/eliminado en Models. OpenCode agregado/eliminado en Development Tools. Interfaz StackNode duplicada eliminada de aistack.ts. | Feedback directo del usuario. VS Code con logo azul #007ACC. |
 | 2026-07-14 | 21 | AIStack.tsx, aistack.ts, DOCUMENTACION.md | **Reorganización categorías**: Automation renombrada a Deploy (Rocket icon). Docker movido de Tools → Deploy. Docker reemplazado por Warp en Tools. n8n reemplazado por Vercel + Railway en Deploy. Descripción de Models actualizada. Minimax re-agregado sin icono. Warp y Railway sin icono (pendientes). Big Pickle agregado y eliminado. | Categoría Deploy con descripción "Despliegue de los proyectos". Warp #01A4FF, Vercel #FFFFFF, Railway #7B3FE4 (logos removidos temporalmente). |
+| 2026-07-14 | 21 | Sidebar.tsx | Brand text "AI" → "Arturo Apaza" (no clickeable) en desktop y mobile drawer | |
+| 2026-07-14 | 22 | package.json, playwright.config.ts (nuevo), tests/home.spec.ts, tests/navigation.spec.ts, tests/ai-stack.spec.ts, tests/projects.spec.ts, tests/mobile.spec.ts, DOCUMENTACION.md | **Tests E2E con Playwright**: 44 tests, 4 skipped, 0 fallos. Cobertura completa: renderizado, navegación (sidebar, keyboard, dots, drawer), AI Stack interactivo, modales de proyectos, mobile drawer. | Proyecto chromium + Mobile Chrome. webServer automático con next dev. `test:e2e` script. `test.skip` condicional por proyecto para tests desktop-only/mobile-only. |
 
 ---
 
@@ -71,6 +73,7 @@ Usar como clases Tailwind: `bg-primary`, `text-primary`, `border-primary/20`, `b
 | 6 | Paleta sólida unificada (primary #68C3A9) | Mantener gradientes blue/violet/green por sección | Consistencia visual. Paleta más profesional y moderna. Elimina dependencia de múltiples colores acento. Definida como theme tokens Tailwind vía `@theme inline`. |
 | 7 | `e.preventDefault()` después del chequeo `isLocked` en wheel handler | Llamar `preventDefault` siempre | Cuando el modal está abierto, el wheel event debe pasar al contenido del modal (`overflow-y: auto`) sin ser interceptado por el snap. Mover `preventDefault` después del early return por `isLocked` permite el scroll natural dentro del modal. |
 | 8 | Fila interactiva de 5 botones y única tarjeta de detalles en AI Stack | Mantener grilla de 5 tarjetas fijas o grafo estático | Según la especificación visual en `meta-stack.png`. Optimiza la distribución del espacio del viewport, reduce la carga cognitiva mostrando una capa a la vez, y permite presentar chips enriquecidos con los logotipos oficiales de libre uso de cada marca en color original. |
+| 9 | Playwright como framework E2E | Vitest + jsdom, Cypress | Next.js 16 con renderizado híbrido SSR+client necesita un navegador real para probar correctamente WheelSnapLayout (wheel/keyboard/touch events) y modales con createPortal. Playwright ofrece webServer automático, paralelización y reporte HTML integrado. `test.skip` condicional por proyecto (`test.info().project.name`) evita duplicar tests desktop vs mobile. |
 
 ---
 
@@ -129,6 +132,13 @@ portafolio-final/
 │   │       ├── Projects.tsx           ← Sección 4: 2 proyectos con modal expandible (createPortal)
 │   │       └── Contact.tsx            ← Sección 5: email grande + redes, sin formulario
 │   ├── public/                        ← Assets estáticos
+├── tests/                         ← Tests E2E (Playwright)
+│   ├── home.spec.ts               ← Renderizado, sidebar, dots, theme toggle
+│   ├── navigation.spec.ts         ← Sidebar links, keyboard, dots, drawer
+│   ├── ai-stack.spec.ts           ← Categorías interactivas, tecnologías
+│   ├── projects.spec.ts           ← Modal open/close, keyboard lock
+│   └── mobile.spec.ts             ← Drawer mobile, hamburger menu
+├── playwright.config.ts           ← Config E2E (chromium + Mobile Chrome)
 ├── FLUJO_DE_TRABAJO.md
 ├── DOCUMENTACION.md
 └── ...
