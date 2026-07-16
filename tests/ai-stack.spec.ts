@@ -21,7 +21,6 @@ test.describe("AI Stack section", () => {
   test("clicking category changes detail card content", async ({ page }) => {
     const section = page.locator("section#ai-stack")
 
-    const modelsBtn = section.locator('button[aria-label="Ver capa de Models"]')
     const frameworksBtn = section.locator('button[aria-label="Ver capa de Agent Frameworks"]')
 
     await expect(section).toContainText("GPT-5")
