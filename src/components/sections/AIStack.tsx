@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useMemo, useState } from "react"
+import { useRef, useMemo, useState, useEffect } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import {
   BrainCircuit,
@@ -8,6 +8,8 @@ import {
   Wrench,
   Server,
   Rocket,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react"
 import { stackLayers } from "@/data/aistack"
 import { cn } from "@/lib/utils"
@@ -119,12 +121,42 @@ export function AIStack() {
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" })
   const [activeLayerId, setActiveLayerId] = useState("models")
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0)
+  const [slideDirection, setSlideDirection] = useState<"left" | "right">("left")
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   const activeLayer = useMemo(() => {
-    return stackLayers.find((layer) => layer.id === activeLayerId) || stackLayers[0]
-  }, [activeLayerId])
+    return stackLayers[currentCategoryIndex] || stackLayers[0]
+  }, [currentCategoryIndex])
 
   const ActiveIcon = layerIcons[activeLayer.id]
+
+  const goToPrevious = () => {
+    if (currentCategoryIndex > 0) {
+      setSlideDirection("right")
+      setCurrentCategoryIndex(currentCategoryIndex - 1)
+    }
+  }
+
+  const goToNext = () => {
+    if (currentCategoryIndex < stackLayers.length - 1) {
+      setSlideDirection("left")
+      setCurrentCategoryIndex(currentCategoryIndex + 1)
+    }
+  }
+
+  const handleDesktopCategoryClick = (layerId: string) => {
+    setActiveLayerId(layerId)
+  }
 
   return (
     <section
@@ -177,9 +209,9 @@ export function AIStack() {
           </p>
         </motion.div>
 
-        {/* Category Circle Buttons Row */}
+        {/* Category Circle Buttons - Desktop Layout (md+) */}
         <motion.div
-          className="flex flex-wrap sm:flex-nowrap justify-center items-center gap-6 sm:gap-10 md:gap-14 mb-10 relative z-10"
+          className="hidden md:flex flex-wrap justify-center items-center gap-6 sm:gap-10 md:gap-14 mb-10 relative z-10"
           initial={{ opacity: 0, y: 15 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
@@ -190,7 +222,7 @@ export function AIStack() {
             return (
               <button
                 key={layer.id}
-                onClick={() => setActiveLayerId(layer.id)}
+                onClick={() => handleDesktopCategoryClick(layer.id)}
                 className="flex flex-col items-center group focus-visible:outline-none"
                 aria-label={`Ver capa de ${layer.label}`}
               >
@@ -216,8 +248,8 @@ export function AIStack() {
                 </div>
                 <p
                   className={cn(
-                      "text-center text-[10px] sm:text-xs font-semibold uppercase tracking-wider mt-3 transition-colors duration-300 max-w-[90px] sm:max-w-[110px] font-heading",
-                      isActive ? "text-primary" : "text-zinc-400 group-hover:text-zinc-200"
+                    "text-center text-[10px] sm:text-xs font-semibold uppercase tracking-wider mt-3 transition-colors duration-300 max-w-[90px] sm:max-w-[110px] font-heading",
+                    isActive ? "text-primary" : "text-zinc-400 group-hover:text-zinc-200"
                   )}
                 >
                   {layer.label}
@@ -225,6 +257,62 @@ export function AIStack() {
               </button>
             )
           })}
+        </motion.div>
+
+        {/* Mobile Carousel - Single Button with Navigation (< md) */}
+        <motion.div
+          className="flex md:hidden justify-center items-center gap-4 mb-6 relative z-10"
+          initial={{ opacity: 0, y: 15 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+        >
+          <button
+            onClick={goToPrevious}
+            disabled={currentCategoryIndex === 0}
+            className="p-2 rounded-full bg-zinc-900/60 border border-zinc-800/40 text-zinc-500 hover:text-primary/80 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300"
+            aria-label="Categoría anterior"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex flex-col items-center min-w-[140px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${currentCategoryIndex}-button`}
+                initial={{
+                  opacity: 0,
+                  x: slideDirection === "left" ? 40 : -40,
+                }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{
+                  opacity: 0,
+                  x: slideDirection === "left" ? -40 : 40,
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="flex flex-col items-center w-full"
+              >
+                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-primary/10 border border-primary/40 text-primary shadow-[0_0_40px_-8px] shadow-primary/30 relative">
+                  {ActiveIcon && <ActiveIcon className="w-7 h-7" />}
+                  <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl -z-10" />
+                </div>
+                <p className="text-center text-[10px] font-semibold uppercase tracking-wider mt-2 text-primary font-heading">
+                  {activeLayer.label}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+            <p className="text-xs text-zinc-500 mt-2">
+              {currentCategoryIndex + 1} / {stackLayers.length}
+            </p>
+          </div>
+
+          <button
+            onClick={goToNext}
+            disabled={currentCategoryIndex === stackLayers.length - 1}
+            className="p-2 rounded-full bg-zinc-900/60 border border-zinc-800/40 text-zinc-500 hover:text-primary/80 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300"
+            aria-label="Siguiente categoría"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </motion.div>
 
         {/* Decorative Connecting Line */}
@@ -249,43 +337,49 @@ export function AIStack() {
         <div className="relative">
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeLayer.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
+              key={isMobile ? `mobile-${currentCategoryIndex}` : `desktop-${activeLayerId}`}
+              initial={{
+                opacity: 0,
+                x: slideDirection === "left" ? 40 : -40,
+              }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{
+                opacity: 0,
+                x: slideDirection === "left" ? -40 : 40,
+              }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="w-full max-w-4xl mx-auto rounded-2xl border border-zinc-800/60 bg-zinc-900/60 backdrop-blur-md p-6 sm:p-8 shadow-2xl relative overflow-hidden"
+              className="w-full max-w-4xl mx-auto rounded-2xl border border-zinc-800/60 bg-zinc-900/60 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden"
             >
               {/* Internal Ambient Radial Lighting */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
               {/* Card Header */}
-              <div className="flex items-start gap-4 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 shadow-sm">
-                  {ActiveIcon && <ActiveIcon className="w-6 h-6 text-primary" />}
+              <div className="flex items-start gap-3 md:gap-4 mb-6 md:mb-8">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 shadow-sm">
+                  {ActiveIcon && <ActiveIcon className="w-5 h-5 md:w-6 md:h-6 text-primary" />}
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-xl sm:text-2xl font-bold text-zinc-100 tracking-tight font-heading">
+                  <h3 className="text-lg md:text-2xl font-bold text-zinc-100 tracking-tight font-heading">
                     {activeLayer.label}
                   </h3>
-                  <p className="text-sm sm:text-base text-zinc-400 mt-1">
+                  <p className="text-xs md:text-base text-zinc-400 mt-1">
                     {activeLayer.description}
                   </p>
                 </div>
               </div>
 
-              {/* Premium Technology Chips Row */}
-              <div className="flex flex-wrap gap-4 justify-start">
+              {/* Premium Technology Chips Row - Scrollable on mobile */}
+              <div className="flex flex-wrap md:flex-wrap gap-3 md:gap-4 justify-start overflow-x-auto md:overflow-x-visible pb-2 md:pb-0">
                 {activeLayer.nodes.map((node) => (
                   <div
                     key={node.id}
-                    className="flex items-center gap-4 px-5 py-4 rounded-2xl bg-zinc-950/40 border border-zinc-800/60 text-zinc-300 hover:bg-zinc-900/40 hover:border-primary/30 hover:text-primary transition-all duration-350 shadow-lg group cursor-default"
+                    className="flex items-center gap-2 md:gap-4 px-3 md:px-5 py-3 md:py-4 rounded-2xl bg-zinc-950/40 border border-zinc-800/60 text-zinc-300 hover:bg-zinc-900/40 hover:border-primary/30 hover:text-primary transition-all duration-350 shadow-lg group cursor-default shrink-0 md:shrink"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800/80 flex items-center justify-center p-2 shrink-0 group-hover:border-primary/20 transition-colors shadow-inner">
+                    <div className="w-7 h-7 md:w-9 md:h-9 rounded-xl bg-zinc-900 border border-zinc-800/80 flex items-center justify-center p-1 md:p-2 shrink-0 group-hover:border-primary/20 transition-colors shadow-inner">
                       <TechLogo id={node.id} className="w-full h-full transition-transform duration-300 group-hover:scale-110" />
                     </div>
                     <div className="min-w-0 pr-1">
-                      <span className="text-sm sm:text-base font-bold tracking-tight text-zinc-100 group-hover:text-primary transition-colors font-heading">
+                      <span className="text-xs md:text-base font-bold tracking-tight text-zinc-100 group-hover:text-primary transition-colors font-heading whitespace-nowrap">
                         {node.label}
                       </span>
                     </div>
