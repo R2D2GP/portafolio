@@ -52,7 +52,17 @@ function useReducedMotion() {
   return ref
 }
 
-export function TerminalCard({ methodology }: { methodology: Methodology }) {
+export function TerminalCard({
+  methodology,
+  startMode = "inView",
+  onDone,
+  showMeta = true,
+}: {
+  methodology: Methodology
+  startMode?: "inView" | "mount"
+  onDone?: () => void
+  showMeta?: boolean
+}) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-80px" })
   const reducedMotion = useReducedMotion()
@@ -64,7 +74,8 @@ export function TerminalCard({ methodology }: { methodology: Methodology }) {
   const totalLines = lines.length
 
   useEffect(() => {
-    if (!isInView || state.phase !== "idle") return
+    const shouldStart = startMode === "mount" || isInView
+    if (!shouldStart || state.phase !== "idle") return
     if (reducedMotion.current) {
       dispatch({ type: "start" })
       dispatch({ type: "char", count: commandLen })
@@ -74,7 +85,7 @@ export function TerminalCard({ methodology }: { methodology: Methodology }) {
       return
     }
     dispatch({ type: "start" })
-  }, [isInView, state.phase, commandLen, totalLines, reducedMotion])
+  }, [isInView, state.phase, commandLen, totalLines, reducedMotion, startMode])
 
   useEffect(() => {
     if (state.phase !== "typing") return
@@ -102,6 +113,11 @@ export function TerminalCard({ methodology }: { methodology: Methodology }) {
     const t = setTimeout(() => dispatch({ type: "next_line", count: state.line + 1 }), 180)
     return () => clearTimeout(t)
   }, [state, totalLines])
+
+  useEffect(() => {
+    if (state.phase !== "done") return
+    onDone?.()
+  }, [state.phase, onDone])
 
   return (
     <div ref={ref} className="group">
@@ -143,14 +159,16 @@ export function TerminalCard({ methodology }: { methodology: Methodology }) {
           )}
         </div>
       </div>
-      <div className="mt-4">
-        <h3 className="text-lg font-semibold text-zinc-100 font-heading">
-          {methodology.name}
-        </h3>
-        <p className="text-sm text-zinc-500 mt-0.5">
-          {methodology.tagline}
-        </p>
-      </div>
+      {showMeta && (
+        <div className="mt-4">
+          <h3 className="text-lg font-semibold text-zinc-100 font-heading">
+            {methodology.name}
+          </h3>
+          <p className="text-sm text-zinc-400 mt-0.5">
+            {methodology.tagline}
+          </p>
+        </div>
+      )}
     </div>
   )
 }
