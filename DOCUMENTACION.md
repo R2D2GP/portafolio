@@ -47,7 +47,7 @@ Bitácora de cambios, decisiones y modificaciones del proyecto `portafolio-final
 | 2026-07-16 | 27 | Technologies.tsx, TerminalCard.tsx, DOCUMENTACION.md | **Responsive Engineering Principles - Botones `.bat` en móvil**: En mobile (`<md`) se reemplazó la lista de terminales apiladas por 4 botones tipo comando con sufijo `.bat`. Al tocar un botón se oculta la lista y se muestra una sola terminal animada correspondiente al principio elegido. | Desktop (`md+`) conserva la grilla original de terminales. `TerminalCard` ahora acepta `startMode`, `onDone` y `showMeta`; `startMode="mount"` permite reiniciar la animación al abrir una terminal desde mobile. El botón "Cerrar terminal" aparece solo al finalizar la animación. No se ejecutaron tests por indicación del usuario. |
 | 2026-07-16 | 27 | tests/engineering-principles.spec.ts (nuevo), DOCUMENTACION.md | **Tests E2E Engineering Principles**: 10 tests (6 corren, 4 skip según viewport). Desktop: verifica 4 terminal cards visibles. Mobile: verifica 4 botones `.bat`, que al clickear se abre la terminal con "Cerrar terminal", que cada botón abre su comando correcto, y que al cerrar vuelven los botones. | 48 tests totales en suite completa (42 preexistentes + 6 nuevos). 0 fallos. |
 | 2026-07-16 | 27 | TerminalCard.tsx, DOCUMENTACION.md | **Contraste tagline**: `text-zinc-500` → `text-zinc-400` en el tagline bajo cada título de Engineering Principles para mejorar legibilidad sobre fondo `dark-bg`. | Consistente con ajuste de contraste de Fase 20 (AI Stack). |
-| 2026-07-16 | 28 | About.tsx, DOCUMENTACION.md | **Ajustes Responsive Sobre Mí**: Se corrigió el acordeón de tarjetas para que ninguna carta inicie abierta (`expandedHighlight` ahora inicia en `null`) y para que el comportamiento interactivo aplique solo en mobile real (`<640px`). | Desde `sm` las 4 cartas permanecen visibles en 2 columnas, el segundo párrafo aparece completo y el botón "Ver más..." queda oculto. En `<sm`, "Ver más..." mantiene el colapso del texto largo y oculta/restaura las cartas solo cuando corresponde. No se ejecutaron tests por indicación del usuario. |
+| 2026-07-16 | 28 | About.tsx, tests/about.spec.ts (nuevo), DOCUMENTACION.md | **Ajustes Responsive Sobre Mí + tests E2E**: Se corrigió el acordeón de tarjetas para que ninguna carta inicie abierta (`expandedHighlight` ahora inicia en `null`) y para que el comportamiento interactivo aplique solo en mobile real (`<640px`). Se agregaron 14 tests E2E (7 desktop, 7 mobile) que cubren: heading/subtitle, 4 highlight cards, 2do párrafo siempre visible en desktop y "Ver más..." oculto, botón "Ver más..." en mobile con toggle de texto y visibilidad de cards, acordeón de descripciones con toggle y exclusión mutua. | Desde `sm` las 4 cartas permanecen visibles en 2 columnas, el segundo párrafo aparece completo y el botón "Ver más..." queda oculto. En `<sm`, "Ver más..." mantiene el colapso del texto largo y oculta/restaura las cartas solo cuando corresponde. Tests: 62 pasan, 10 skip, 0 fallos en suite completa (72 tests). |
 
 ---
 
@@ -146,7 +146,9 @@ portafolio-final/
 │   ├── navigation.spec.ts         ← Sidebar links, keyboard, dots, drawer
 │   ├── ai-stack.spec.ts           ← Categorías interactivas, tecnologías
 │   ├── projects.spec.ts           ← Modal open/close, keyboard lock
-│   └── mobile.spec.ts             ← Drawer mobile, hamburger menu
+│   ├── mobile.spec.ts             ← Drawer mobile, hamburger menu
+│   ├── engineering-principles.spec.ts ← Terminal cards desktop + botones .bat mobile
+│   └── about.spec.ts              ← Párrafo colapsable, acordeón highlight cards
 ├── playwright.config.ts           ← Config E2E (chromium + Mobile Chrome)
 ├── FLUJO_DE_TRABAJO.md
 ├── DOCUMENTACION.md
