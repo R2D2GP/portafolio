@@ -279,15 +279,16 @@ export function AIStack() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${currentCategoryIndex}-button`}
-                initial={{
+                custom={slideDirection}
+                initial={(direction) => ({
                   opacity: 0,
-                  x: slideDirection === "left" ? 40 : -40,
-                }}
+                  x: direction === "left" ? 40 : -40,
+                })}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{
+                exit={(direction) => ({
                   opacity: 0,
-                  x: slideDirection === "left" ? -40 : 40,
-                }}
+                  x: direction === "left" ? -40 : 40,
+                })}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="flex flex-col items-center w-full"
               >
@@ -338,15 +339,16 @@ export function AIStack() {
           <AnimatePresence mode="wait">
             <motion.div
               key={isMobile ? `mobile-${currentCategoryIndex}` : `desktop-${activeLayerId}`}
-              initial={{
+              custom={slideDirection}
+              initial={(direction) => ({
                 opacity: 0,
-                x: slideDirection === "left" ? 40 : -40,
-              }}
+                x: direction === "left" ? 40 : -40,
+              })}
               animate={{ opacity: 1, x: 0 }}
-              exit={{
+              exit={(direction) => ({
                 opacity: 0,
-                x: slideDirection === "left" ? -40 : 40,
-              }}
+                x: direction === "left" ? -40 : 40,
+              })}
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="w-full max-w-4xl mx-auto rounded-2xl border border-zinc-800/60 bg-zinc-900/60 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden"
             >
