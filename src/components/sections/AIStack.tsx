@@ -122,7 +122,7 @@ export function AIStack() {
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" })
   const [activeLayerId, setActiveLayerId] = useState("models")
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0)
-  const [slideDirection, setSlideDirection] = useState<"left" | "right">("left")
+  const slideDirectionRef = useRef<"left" | "right">("left")
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -135,22 +135,25 @@ export function AIStack() {
   }, [])
 
   const activeLayer = useMemo(() => {
-    return stackLayers[currentCategoryIndex] || stackLayers[0]
-  }, [currentCategoryIndex])
+    if (isMobile) {
+      return stackLayers[currentCategoryIndex] || stackLayers[0]
+    }
+    return stackLayers.find((layer) => layer.id === activeLayerId) || stackLayers[0]
+  }, [isMobile, currentCategoryIndex, activeLayerId])
 
   const ActiveIcon = layerIcons[activeLayer.id]
 
   const goToPrevious = () => {
     if (currentCategoryIndex > 0) {
-      setSlideDirection("right")
-      setCurrentCategoryIndex(currentCategoryIndex - 1)
+      slideDirectionRef.current = "right"
+      setCurrentCategoryIndex(prev => prev - 1)
     }
   }
 
   const goToNext = () => {
     if (currentCategoryIndex < stackLayers.length - 1) {
-      setSlideDirection("left")
-      setCurrentCategoryIndex(currentCategoryIndex + 1)
+      slideDirectionRef.current = "left"
+      setCurrentCategoryIndex(prev => prev + 1)
     }
   }
 
@@ -279,16 +282,13 @@ export function AIStack() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${currentCategoryIndex}-button`}
-                custom={slideDirection}
-                initial={(direction) => ({
-                  opacity: 0,
-                  x: direction === "left" ? 40 : -40,
-                })}
+                custom={slideDirectionRef.current}
+                initial={{ opacity: 0, x: slideDirectionRef.current === "left" ? 40 : -40 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={(direction) => ({
+                exit={(() => ({
                   opacity: 0,
-                  x: direction === "left" ? -40 : 40,
-                })}
+                  x: slideDirectionRef.current === "left" ? -40 : 40,
+                })) as any}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="flex flex-col items-center w-full"
               >
@@ -339,16 +339,16 @@ export function AIStack() {
           <AnimatePresence mode="wait">
             <motion.div
               key={isMobile ? `mobile-${currentCategoryIndex}` : `desktop-${activeLayerId}`}
-              custom={slideDirection}
-              initial={(direction) => ({
+              custom={slideDirectionRef.current}
+              initial={{
                 opacity: 0,
-                x: direction === "left" ? 40 : -40,
-              })}
+                x: slideDirectionRef.current === "left" ? 40 : -40,
+              }}
               animate={{ opacity: 1, x: 0 }}
-              exit={(direction) => ({
+              exit={(() => ({
                 opacity: 0,
-                x: direction === "left" ? -40 : 40,
-              })}
+                x: slideDirectionRef.current === "left" ? -40 : 40,
+              })) as any}
               transition={{ duration: 0.3, ease: "easeInOut" }}
               className="w-full max-w-4xl mx-auto rounded-2xl border border-zinc-800/60 bg-zinc-900/60 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden"
             >
