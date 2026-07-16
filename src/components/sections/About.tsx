@@ -31,11 +31,11 @@ const highlights = [
 
 export function About() {
   const [isExpanded, setIsExpanded] = useState(false)
-  const [expandedHighlight, setExpandedHighlight] = useState<number | null>(0)
+  const [expandedHighlight, setExpandedHighlight] = useState<number | null>(null)
 
   const handleHighlightClick = (index: number) => {
-    // Solo activar comportamiento acordeón en pantallas móviles/tablets (< 1024px)
-    if (typeof window !== "undefined" && window.innerWidth >= 1024) {
+    // Solo activar comportamiento acordeón en pantallas móviles (< 640px)
+    if (typeof window !== "undefined" && window.innerWidth >= 640) {
       return
     }
     setExpandedHighlight(expandedHighlight === index ? null : index)
@@ -55,7 +55,7 @@ export function About() {
           />
         </AnimatedSection>
 
-        <div className="mt-16 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="mt-10 sm:mt-12 lg:mt-16 grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           <AnimatedSection delay={0.1}>
             <div className="border-l-2 border-l-primary/30 pl-6">
               <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
@@ -65,8 +65,8 @@ export function About() {
               </p>
               <div
                 className={cn(
-                  "transition-all duration-300 ease-in-out overflow-hidden lg:max-h-96 lg:opacity-100 lg:mt-4",
-                  isExpanded ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0 pointer-events-none lg:pointer-events-auto"
+                  "transition-all duration-300 ease-in-out overflow-hidden sm:max-h-96 sm:opacity-100 sm:mt-4",
+                  isExpanded ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0 pointer-events-none sm:pointer-events-auto"
                 )}
               >
                 <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
@@ -78,7 +78,7 @@ export function About() {
               </div>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="mt-3 text-sm font-semibold text-primary hover:text-hover transition-colors lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded cursor-pointer"
+                className="mt-3 text-sm font-semibold text-primary hover:text-hover transition-colors sm:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded cursor-pointer"
               >
                 {isExpanded ? "Ver menos" : "Ver más..."}
               </button>
@@ -89,8 +89,8 @@ export function About() {
             className={cn(
               "grid grid-cols-1 sm:grid-cols-2 gap-4 transition-all duration-300 ease-in-out",
               isExpanded
-                ? "max-h-0 opacity-0 pointer-events-none overflow-hidden mt-0"
-                : "max-h-[600px] opacity-100 lg:max-h-none lg:opacity-100 lg:pointer-events-auto"
+                ? "max-h-0 opacity-0 pointer-events-none overflow-hidden mt-0 sm:max-h-none sm:opacity-100 sm:pointer-events-auto sm:overflow-visible"
+                : "max-h-[600px] opacity-100 sm:max-h-none sm:opacity-100 sm:pointer-events-auto sm:overflow-visible"
             )}
           >
             {highlights.map((item, index) => {
@@ -109,8 +109,8 @@ export function About() {
                     }}
                     className={cn(
                       "group relative rounded-2xl border bg-white dark:bg-zinc-800/30 p-3.5 transition-all duration-350 select-none",
-                      // Estilos interactivos móviles (< lg)
-                      "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 border-zinc-200 dark:border-zinc-700/50",
+                      // Estilos interactivos móviles (< sm)
+                      "cursor-pointer sm:cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 border-zinc-200 dark:border-zinc-700/50",
                       isExpandedCard
                         ? "border-primary/30 shadow-md shadow-primary/5 lg:border-zinc-200 lg:dark:border-zinc-700/50 lg:shadow-none"
                         : "hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5",
@@ -125,7 +125,7 @@ export function About() {
                       <div
                         className={cn(
                           "flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-lg bg-primary/10 text-primary transition-transform duration-300 shadow-[0_0_12px_-4px] shadow-primary/20 shrink-0 lg:mb-3",
-                          isExpandedCard ? "max-lg:scale-110" : "group-hover:scale-110"
+                          isExpandedCard ? "max-sm:scale-110" : "group-hover:scale-110"
                         )}
                       >
                         <item.icon className="w-4 h-4 lg:w-5 lg:h-5" />
@@ -134,18 +134,18 @@ export function About() {
                         className={cn(
                           "text-sm lg:text-base font-semibold font-heading transition-colors duration-300 lg:mb-1",
                           isExpandedCard
-                            ? "max-lg:text-primary"
+                            ? "max-sm:text-primary"
                             : "text-zinc-900 dark:text-zinc-100 group-hover:text-primary"
                         )}
                       >
                         {item.title}
                       </h3>
                     </div>
-                    {/* Descripción: Colapsable en móvil, Siempre visible en escritorio */}
+                    {/* Descripción: colapsable en móvil, visible desde sm */}
                     <div
                       className={cn(
-                        "transition-all duration-300 ease-in-out overflow-hidden lg:max-h-none lg:opacity-100 lg:mt-0",
-                        isExpandedCard ? "max-lg:max-h-24 max-lg:opacity-100 max-lg:mt-2.5" : "max-lg:max-h-0 max-lg:opacity-0"
+                        "transition-all duration-300 ease-in-out overflow-hidden sm:max-h-none sm:opacity-100 sm:mt-0",
+                        isExpandedCard ? "max-sm:max-h-24 max-sm:opacity-100 max-sm:mt-2.5" : "max-sm:max-h-0 max-sm:opacity-0"
                       )}
                     >
                       <p className="text-xs lg:text-sm text-zinc-600 dark:text-zinc-400">
