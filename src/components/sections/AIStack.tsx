@@ -316,81 +316,88 @@ export function AIStack() {
           </button>
         </motion.div>
 
-        {/* Decorative Connecting Line */}
-        <div className="flex justify-center mb-10">
-          <svg width="2" height="40" className="opacity-30">
-            <motion.line
-              x1="0"
-              y1="0"
-              x2="0"
-              y2="40"
-              stroke="#68C3A9"
-              strokeWidth="1.5"
-              strokeDasharray="4 4"
-              initial={{ pathLength: 0 }}
-              animate={isInView ? { pathLength: 1 } : {}}
-              transition={{ duration: 1, ease: "easeOut" }}
-            />
-          </svg>
-        </div>
+        {/* Decorative Connecting Line + Card con fade-in al llegar */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+        >
+          {/* Decorative Connecting Line */}
+          <div className="flex justify-center mb-10">
+            <svg width="2" height="40" className="opacity-30">
+              <motion.line
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="40"
+                stroke="#68C3A9"
+                strokeWidth="1.5"
+                strokeDasharray="4 4"
+                initial={{ pathLength: 0 }}
+                animate={isInView ? { pathLength: 1 } : {}}
+                transition={{ duration: 1, ease: "easeOut" }}
+              />
+            </svg>
+          </div>
 
-        {/* Active Layer Details Card */}
-        <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={isMobile ? `mobile-${currentCategoryIndex}` : `desktop-${activeLayerId}`}
-              custom={slideDirectionRef.current}
-              initial={{
-                opacity: 0,
-                x: slideDirectionRef.current === "left" ? 40 : -40,
-              }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={(() => ({
-                opacity: 0,
-                x: slideDirectionRef.current === "left" ? -40 : 40,
-              })) as any}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="w-full max-w-4xl mx-auto rounded-2xl border border-zinc-800/60 bg-zinc-900/60 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden"
-            >
-              {/* Internal Ambient Radial Lighting */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+          {/* Active Layer Details Card */}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={isMobile ? `mobile-${currentCategoryIndex}` : `desktop-${activeLayerId}`}
+                custom={slideDirectionRef.current}
+                initial={{
+                  opacity: 0,
+                  x: slideDirectionRef.current === "left" ? 40 : -40,
+                }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={(() => ({
+                  opacity: 0,
+                  x: slideDirectionRef.current === "left" ? -40 : 40,
+                })) as any}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="w-full max-w-4xl mx-auto rounded-2xl border border-zinc-800/60 bg-zinc-900/60 backdrop-blur-md p-4 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden"
+              >
+                {/* Internal Ambient Radial Lighting */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Card Header */}
-              <div className="flex items-start gap-3 md:gap-4 mb-6 md:mb-8">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 shadow-sm">
-                  {ActiveIcon && <ActiveIcon className="w-5 h-5 md:w-6 md:h-6 text-primary" />}
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-lg md:text-2xl font-bold text-zinc-100 tracking-tight font-heading">
-                    {activeLayer.label}
-                  </h3>
-                  <p className="text-xs md:text-base text-zinc-400 mt-1">
-                    {activeLayer.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Premium Technology Chips Row - Scrollable on mobile */}
-              <div className="flex flex-wrap md:flex-wrap gap-3 md:gap-4 justify-start overflow-x-auto md:overflow-x-visible pb-2 md:pb-0">
-                {activeLayer.nodes.map((node) => (
-                  <div
-                    key={node.id}
-                    className="flex items-center gap-2 md:gap-4 px-3 md:px-5 py-3 md:py-4 rounded-2xl bg-zinc-950/40 border border-zinc-800/60 text-zinc-300 hover:bg-zinc-900/40 hover:border-primary/30 hover:text-primary transition-all duration-350 shadow-lg group cursor-default shrink-0 md:shrink"
-                  >
-                    <div className="w-7 h-7 md:w-9 md:h-9 rounded-xl bg-zinc-900 border border-zinc-800/80 flex items-center justify-center p-1 md:p-2 shrink-0 group-hover:border-primary/20 transition-colors shadow-inner">
-                      <TechLogo id={node.id} className="w-full h-full transition-transform duration-300 group-hover:scale-110" />
-                    </div>
-                    <div className="min-w-0 pr-1">
-                      <span className="text-xs md:text-base font-bold tracking-tight text-zinc-100 group-hover:text-primary transition-colors font-heading whitespace-nowrap">
-                        {node.label}
-                      </span>
-                    </div>
+                {/* Card Header */}
+                <div className="flex items-start gap-3 md:gap-4 mb-6 md:mb-8">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 shadow-sm">
+                    {ActiveIcon && <ActiveIcon className="w-5 h-5 md:w-6 md:h-6 text-primary" />}
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+                  <div className="min-w-0">
+                    <h3 className="text-lg md:text-2xl font-bold text-zinc-100 tracking-tight font-heading">
+                      {activeLayer.label}
+                    </h3>
+                    <p className="text-xs md:text-base text-zinc-400 mt-1">
+                      {activeLayer.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Premium Technology Chips Row - Scrollable on mobile */}
+                <div className="flex flex-wrap md:flex-wrap gap-3 md:gap-4 justify-start overflow-x-auto md:overflow-x-visible pb-2 md:pb-0">
+                  {activeLayer.nodes.map((node) => (
+                    <div
+                      key={node.id}
+                      className="flex items-center gap-2 md:gap-4 px-3 md:px-5 py-3 md:py-4 rounded-2xl bg-zinc-950/40 border border-zinc-800/60 text-zinc-300 hover:bg-zinc-900/40 hover:border-primary/30 hover:text-primary transition-all duration-350 shadow-lg group cursor-default shrink-0 md:shrink"
+                    >
+                      <div className="w-7 h-7 md:w-9 md:h-9 rounded-xl bg-zinc-900 border border-zinc-800/80 flex items-center justify-center p-1 md:p-2 shrink-0 group-hover:border-primary/20 transition-colors shadow-inner">
+                        <TechLogo id={node.id} className="w-full h-full transition-transform duration-300 group-hover:scale-110" />
+                      </div>
+                      <div className="min-w-0 pr-1">
+                        <span className="text-xs md:text-base font-bold tracking-tight text-zinc-100 group-hover:text-primary transition-colors font-heading whitespace-nowrap">
+                          {node.label}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
